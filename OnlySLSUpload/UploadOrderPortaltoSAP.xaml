@@ -1,4 +1,3 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
 <Activity mc:Ignorable="sap sap2010" x:Class="UploadOrderPortaltoSAP" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:ucas="clr-namespace:UiPath.Core.Activities.SAP;assembly=UiPath.UiAutomation.Activities" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <x:Members>
     <x:Property Name="mailBody" Type="InArgument(x:String)" />
@@ -23,7 +22,7 @@
     <x:Property Name="inner_RODK_dir" Type="InArgument(x:String)" />
     <x:Property Name="inner_RODK_cnt" Type="InOutArgument(x:String)" />
   </x:Members>
-  <sap:VirtualizedContainerService.HintSize>681,2757</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>578,717</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>ActivityBuilder_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <scg:List x:TypeArguments="x:String" Capacity="27">
@@ -89,7 +88,7 @@
       <AssemblyReference>UiPath.System.Activities.Design</AssemblyReference>
     </scg:List>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="Upload Order Portal to SAP" sap:VirtualizedContainerService.HintSize="548,2652" sap2010:WorkflowViewState.IdRef="Sequence_3">
+  <Sequence DisplayName="Upload Order Portal to SAP" sap:VirtualizedContainerService.HintSize="552,612" sap2010:WorkflowViewState.IdRef="Sequence_3">
     <Sequence.Variables>
       <Variable x:TypeArguments="x:String" Name="file_name" />
     </Sequence.Variables>
@@ -98,7 +97,7 @@
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <ucas:Logon Window="{x:Null}" ConnectionName="[in_SAP_conname]" ContinueOnError="False" DelayBetweenRetries="600" DisplayName="Open SAP Logon" sap:VirtualizedContainerService.HintSize="506,51" sap2010:WorkflowViewState.IdRef="Logon_1" Retries="5" SAPLogonPath="[in_SAP_path]">
+    <ucas:Logon Window="{x:Null}" ConnectionName="[in_SAP_conname]" ContinueOnError="False" DelayBetweenRetries="1500" DisplayName="Open SAP Logon" sap:VirtualizedContainerService.HintSize="510,51" sap2010:WorkflowViewState.IdRef="Logon_1" Retries="10" SAPLogonPath="[in_SAP_path]">
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
           <x:Boolean x:Key="IsExpanded">False</x:Boolean>
@@ -106,7 +105,7 @@
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
     </ucas:Logon>
-    <ucas:Login SecurePassword="{x:Null}" Window="{x:Null}" Client="[in_SAP_client]" ContinueOnError="False" DisplayName="SAP Login" sap:VirtualizedContainerService.HintSize="506,51" sap2010:WorkflowViewState.IdRef="Login_1" IsSecure="False" Language="[in_SAP_lang]" MultiLogonOptionToChoose="Single" Password="[in_SAP_password]" Timeout="5000" Username="[in_SAP_username]">
+    <ucas:Login SecurePassword="{x:Null}" Window="{x:Null}" Client="[in_SAP_client]" ContinueOnError="False" DisplayName="SAP Login" sap:VirtualizedContainerService.HintSize="510,51" sap2010:WorkflowViewState.IdRef="Login_1" IsSecure="False" Language="[in_SAP_lang]" MultiLogonOptionToChoose="Single" Password="[in_SAP_password]" Timeout="5000" Username="[in_SAP_username]">
       <ucas:Login.Target>
         <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="74aa2ae0-6876-42b4-90ce-af1d37f1646d" InformativeScreenshot="b7afa8759245587bba018262006bc85e" Selector="&lt;wnd app='saplogon.exe' cls='SAP_FRONTEND_SESSION' title='SAP' /&gt;">
           <ui:Target.TimeoutMS>
@@ -124,7 +123,7 @@
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
     </ucas:Login>
-    <ucas:CallTransaction DisplayName="Call Transaction Code" sap:VirtualizedContainerService.HintSize="506,51" sap2010:WorkflowViewState.IdRef="CallTransaction_1" Transaction="ZVSL_UPL_ORDER_SLS">
+    <ucas:CallTransaction DisplayName="Call Transaction Code" sap:VirtualizedContainerService.HintSize="510,51" sap2010:WorkflowViewState.IdRef="CallTransaction_1" Transaction="ZVSL_UPL_ORDER_SLS">
       <ucas:CallTransaction.Target>
         <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="683c1e3f-ffc4-42a5-bc1c-f3b08c0da885" InformativeScreenshot="3f85ec6519b2a7802d161815f0380d28" Selector="&lt;wnd app='saplogon.exe' cls='SAP_FRONTEND_SESSION' title='SAP Easy Access' /&gt;">
           <ui:Target.TimeoutMS>
@@ -142,17 +141,17 @@
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
     </ucas:CallTransaction>
-    <Switch x:TypeArguments="x:String" DisplayName="Switch Outbound Type" Expression="[If(mailBody.Contains(&quot;FOMD&quot;),&quot;Fix Order Main Dealer&quot;,&#xA;If(mailBody.Contains(&quot;FODK&quot;),&quot;Fix Order Dealer Khusus&quot;, &#xA;If(mailBody.Contains(&quot;AFOMD&quot;),&quot;Add Fix Order Main Dealer&quot;, &#xA;If(mailBody.Contains(&quot;AFODK&quot;),&quot;Add Fix Order Dealer Khusus&quot;,&#xA;If(mailBody.Contains(&quot;ROMD&quot;),&quot;Regular Order Main Dealer&quot;,&#xA;If(mailBody.Contains(&quot;RODK&quot;),&quot;Regular Order Dealer Khusus&quot;,&quot;default&quot;))))))]" sap:VirtualizedContainerService.HintSize="506,2287" sap2010:WorkflowViewState.IdRef="Switch`1_4">
+    <Switch x:TypeArguments="x:String" DisplayName="Switch Outbound Type" Expression="[If(mailBody.Contains(&quot;choose Fix Order&quot;),&quot;Fix Order Main Dealer&quot;,&#xA;If(mailBody.Contains(&quot;FODK&quot;),&quot;Fix Order Dealer Khusus&quot;, &#xA;If(mailBody.Contains(&quot;choose Add Fix Order&quot;),&quot;Add Fix Order Main Dealer&quot;, &#xA;If(mailBody.Contains(&quot;Add Fix Order DK&quot;),&quot;Add Fix Order Dealer Khusus&quot;,&#xA;If(mailBody.Contains(&quot;choose Regular Order&quot;),&quot;Regular Order Main Dealer&quot;,&#xA;If(mailBody.Contains(&quot;RODK&quot;),&quot;Regular Order Dealer Khusus&quot;,&quot;default&quot;))))))]" sap:VirtualizedContainerService.HintSize="510,247" sap2010:WorkflowViewState.IdRef="Switch`1_4">
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
           <x:Boolean x:Key="IsExpanded">True</x:Boolean>
           <x:Boolean x:Key="IsPinned">False</x:Boolean>
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
-      <Sequence x:Key="Fix Order Main Dealer" DisplayName="Fix Order Main Dealer" sap:VirtualizedContainerService.HintSize="380,1989" sap2010:WorkflowViewState.IdRef="Sequence_4">
+      <Sequence x:Key="Fix Order Main Dealer" DisplayName="Fix Order Main Dealer" sap:VirtualizedContainerService.HintSize="200,66" sap2010:WorkflowViewState.IdRef="Sequence_4">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
-            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            <x:Boolean x:Key="IsExpanded">False</x:Boolean>
             <x:Boolean x:Key="IsPinned">False</x:Boolean>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
@@ -492,14 +491,14 @@
           </ui:Click.Target>
         </ui:Click>
       </Sequence>
-      <Sequence x:Key="Add Fix Order Main Dealer" DisplayName="Add Fix Order Main Dealer" sap:VirtualizedContainerService.HintSize="388,1989" sap2010:WorkflowViewState.IdRef="Sequence_6">
+      <Sequence x:Key="Add Fix Order Main Dealer" DisplayName="Add Fix Order Main Dealer" sap:VirtualizedContainerService.HintSize="421,1989" sap2010:WorkflowViewState.IdRef="Sequence_6">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
             <x:Boolean x:Key="IsPinned">False</x:Boolean>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
-        <ui:Click AlterIfDisabled="{x:Null}" DelayBefore="{x:Null}" DelayMS="{x:Null}" SendWindowMessages="{x:Null}" SimulateClick="{x:Null}" ClickType="CLICK_SINGLE" DisplayName="Radio Button Fix Order Main Dealer" sap:VirtualizedContainerService.HintSize="346,106" sap2010:WorkflowViewState.IdRef="Click_6" KeyModifiers="None" MouseButton="BTN_LEFT">
+        <ui:Click AlterIfDisabled="{x:Null}" DelayBefore="{x:Null}" DelayMS="{x:Null}" SendWindowMessages="{x:Null}" SimulateClick="{x:Null}" ClickType="CLICK_SINGLE" DisplayName="Radio Button Fix Order Main Dealer" sap:VirtualizedContainerService.HintSize="379,106" sap2010:WorkflowViewState.IdRef="Click_6" KeyModifiers="None" MouseButton="BTN_LEFT">
           <ui:Click.CursorPosition>
             <ui:CursorPosition Position="Center">
               <ui:CursorPosition.OffsetX>
@@ -521,7 +520,7 @@
             </ui:Target>
           </ui:Click.Target>
         </ui:Click>
-        <ucas:ClickToolbarButton ContinueOnError="{x:Null}" DelayAfter="{x:Null}" DelayBefore="{x:Null}" AlterIfDisabled="True" DisplayName="Execute" sap:VirtualizedContainerService.HintSize="346,51" sap2010:WorkflowViewState.IdRef="ClickToolbarButton_41" Item="Execute   (F8)">
+        <ucas:ClickToolbarButton ContinueOnError="{x:Null}" DelayAfter="{x:Null}" DelayBefore="{x:Null}" AlterIfDisabled="True" DisplayName="Execute" sap:VirtualizedContainerService.HintSize="379,51" sap2010:WorkflowViewState.IdRef="ClickToolbarButton_41" Item="Execute   (F8)">
           <ucas:ClickToolbarButton.Items>
             <scg:List x:TypeArguments="x:String" Capacity="4">
               <x:String xml:space="preserve">More   (Alt + F12)</x:String>
@@ -545,7 +544,7 @@
             </scg:Dictionary>
           </sap:WorkflowViewStateService.ViewState>
         </ucas:ClickToolbarButton>
-        <ucas:ClickToolbarButton ContinueOnError="{x:Null}" DelayAfter="{x:Null}" DelayBefore="{x:Null}" AlterIfDisabled="True" DisplayName="Click Toolbar Button 'Localfile'" sap:VirtualizedContainerService.HintSize="346,51" sap2010:WorkflowViewState.IdRef="ClickToolbarButton_42" Item="Local file...   (Ctrl+Shift+F9)">
+        <ucas:ClickToolbarButton ContinueOnError="{x:Null}" DelayAfter="{x:Null}" DelayBefore="{x:Null}" AlterIfDisabled="True" DisplayName="Click Toolbar Button 'Localfile'" sap:VirtualizedContainerService.HintSize="379,51" sap2010:WorkflowViewState.IdRef="ClickToolbarButton_42" Item="Local file...   (Ctrl+Shift+F9)">
           <ucas:ClickToolbarButton.Items>
             <scg:List x:TypeArguments="x:String" Capacity="16">
               <x:String xml:space="preserve">More   (Alt + F12)</x:String>
@@ -582,7 +581,7 @@
             </scg:Dictionary>
           </sap:WorkflowViewStateService.ViewState>
         </ucas:ClickToolbarButton>
-        <ui:Click AlterIfDisabled="{x:Null}" DelayBefore="{x:Null}" DelayMS="{x:Null}" SendWindowMessages="{x:Null}" SimulateClick="{x:Null}" ClickType="CLICK_SINGLE" DisplayName="Click 'RadioButton  Spreadsheet'" sap:VirtualizedContainerService.HintSize="346,51" sap2010:WorkflowViewState.IdRef="Click_39" KeyModifiers="None" MouseButton="BTN_LEFT">
+        <ui:Click AlterIfDisabled="{x:Null}" DelayBefore="{x:Null}" DelayMS="{x:Null}" SendWindowMessages="{x:Null}" SimulateClick="{x:Null}" ClickType="CLICK_SINGLE" DisplayName="Click 'RadioButton  Spreadsheet'" sap:VirtualizedContainerService.HintSize="379,51" sap2010:WorkflowViewState.IdRef="Click_39" KeyModifiers="None" MouseButton="BTN_LEFT">
           <ui:Click.CursorPosition>
             <ui:CursorPosition Position="Center">
               <ui:CursorPosition.OffsetX>
@@ -610,7 +609,7 @@
             </scg:Dictionary>
           </sap:WorkflowViewStateService.ViewState>
         </ui:Click>
-        <ucas:ClickToolbarButton ContinueOnError="{x:Null}" DelayAfter="{x:Null}" DelayBefore="{x:Null}" AlterIfDisabled="True" DisplayName="Click Toolbar Button 'Continue (Enter)'" sap:VirtualizedContainerService.HintSize="346,51" sap2010:WorkflowViewState.IdRef="ClickToolbarButton_43" Item="Continue   (Enter)">
+        <ucas:ClickToolbarButton ContinueOnError="{x:Null}" DelayAfter="{x:Null}" DelayBefore="{x:Null}" AlterIfDisabled="True" DisplayName="Click Toolbar Button 'Continue (Enter)'" sap:VirtualizedContainerService.HintSize="379,51" sap2010:WorkflowViewState.IdRef="ClickToolbarButton_43" Item="Continue   (Enter)">
           <ucas:ClickToolbarButton.Items>
             <scg:List x:TypeArguments="x:String" Capacity="4">
               <x:String xml:space="preserve">Continue   (Enter)</x:String>
@@ -634,7 +633,7 @@
             </scg:Dictionary>
           </sap:WorkflowViewStateService.ViewState>
         </ucas:ClickToolbarButton>
-        <ui:Click AlterIfDisabled="{x:Null}" DelayBefore="{x:Null}" DelayMS="{x:Null}" SendWindowMessages="{x:Null}" SimulateClick="{x:Null}" ClickType="CLICK_SINGLE" DisplayName="Click 'TextField Directory'" sap:VirtualizedContainerService.HintSize="346,106" sap2010:WorkflowViewState.IdRef="Click_40" KeyModifiers="None" MouseButton="BTN_LEFT">
+        <ui:Click AlterIfDisabled="{x:Null}" DelayBefore="{x:Null}" DelayMS="{x:Null}" SendWindowMessages="{x:Null}" SimulateClick="{x:Null}" ClickType="CLICK_SINGLE" DisplayName="Click 'TextField Directory'" sap:VirtualizedContainerService.HintSize="379,106" sap2010:WorkflowViewState.IdRef="Click_40" KeyModifiers="None" MouseButton="BTN_LEFT">
           <ui:Click.CursorPosition>
             <ui:CursorPosition Position="Center">
               <ui:CursorPosition.OffsetX>
@@ -656,7 +655,7 @@
             </ui:Target>
           </ui:Click.Target>
         </ui:Click>
-        <ui:TypeInto AlterIfDisabled="{x:Null}" ClickBeforeTyping="{x:Null}" DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" SendWindowMessages="{x:Null}" SimulateType="{x:Null}" Activate="True" DisplayName="Type Into 'CTextField  Directory'" EmptyField="True" sap:VirtualizedContainerService.HintSize="346,134" sap2010:WorkflowViewState.IdRef="TypeInto_17" Text="[inner_AFOMD_dir]">
+        <ui:TypeInto AlterIfDisabled="{x:Null}" ClickBeforeTyping="{x:Null}" DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" SendWindowMessages="{x:Null}" SimulateType="{x:Null}" Activate="True" DisplayName="Type Into 'CTextField  Directory'" EmptyField="True" sap:VirtualizedContainerService.HintSize="379,134" sap2010:WorkflowViewState.IdRef="TypeInto_17" Text="[inner_AFOMD_dir]">
           <ui:TypeInto.Target>
             <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="7d919452-29f5-4ded-913a-1c0e15c6a4ba" InformativeScreenshot="bc440f0092b0acde40b9be9cb3576cd0" Selector="&lt;wnd app='saplogon.exe' cls='#32770' title='Upload Order To SAP' idx='*' /&gt;&lt;sap id='usr/ctxtDY_PATH' /&gt;">
               <ui:Target.TimeoutMS>
@@ -668,7 +667,7 @@
             </ui:Target>
           </ui:TypeInto.Target>
         </ui:TypeInto>
-        <ui:Click AlterIfDisabled="{x:Null}" DelayBefore="{x:Null}" DelayMS="{x:Null}" SendWindowMessages="{x:Null}" SimulateClick="{x:Null}" ClickType="CLICK_SINGLE" DisplayName="Click 'CTextField  File Name'" sap:VirtualizedContainerService.HintSize="346,106" sap2010:WorkflowViewState.IdRef="Click_41" KeyModifiers="None" MouseButton="BTN_LEFT">
+        <ui:Click AlterIfDisabled="{x:Null}" DelayBefore="{x:Null}" DelayMS="{x:Null}" SendWindowMessages="{x:Null}" SimulateClick="{x:Null}" ClickType="CLICK_SINGLE" DisplayName="Click 'CTextField  File Name'" sap:VirtualizedContainerService.HintSize="379,106" sap2010:WorkflowViewState.IdRef="Click_41" KeyModifiers="None" MouseButton="BTN_LEFT">
           <ui:Click.CursorPosition>
             <ui:CursorPosition Position="Center">
               <ui:CursorPosition.OffsetX>
@@ -690,13 +689,13 @@
             </ui:Target>
           </ui:Click.Target>
         </ui:Click>
-        <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" DisplayName="Invoke test_read_for_savefilealgorithm workflow" sap:VirtualizedContainerService.HintSize="346,112" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_3" UnSafe="False" WorkflowFileName="save_file_algorithm\test_read_for_savefilealgorithm_AFOMD.xaml">
+        <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" DisplayName="Invoke test_read_for_savefilealgorithm workflow" sap:VirtualizedContainerService.HintSize="379,112" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_3" UnSafe="False" WorkflowFileName="save_file_algorithm\test_read_for_savefilealgorithm_AFOMD.xaml">
           <ui:InvokeWorkflowFile.Arguments>
             <OutArgument x:TypeArguments="x:String" x:Key="out_file_name">[file_name]</OutArgument>
             <InArgument x:TypeArguments="x:String" x:Key="saver_AFOMD_cnt">[inner_AFOMD_cnt]</InArgument>
           </ui:InvokeWorkflowFile.Arguments>
         </ui:InvokeWorkflowFile>
-        <ui:TypeInto AlterIfDisabled="{x:Null}" ClickBeforeTyping="{x:Null}" DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" SendWindowMessages="{x:Null}" SimulateType="{x:Null}" Activate="True" DisplayName="Type Into 'CTextField  File Name'" EmptyField="True" sap:VirtualizedContainerService.HintSize="346,134" sap2010:WorkflowViewState.IdRef="TypeInto_18" Text="[file_name+&quot;-&quot;+&quot;Add FOMD&quot;+&quot;.XLS&quot;]">
+        <ui:TypeInto AlterIfDisabled="{x:Null}" ClickBeforeTyping="{x:Null}" DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" SendWindowMessages="{x:Null}" SimulateType="{x:Null}" Activate="True" DisplayName="Type Into 'CTextField  File Name'" EmptyField="True" sap:VirtualizedContainerService.HintSize="379,134" sap2010:WorkflowViewState.IdRef="TypeInto_18" Text="[file_name+&quot;-&quot;+&quot;Add FOMD&quot;+&quot;.XLS&quot;]">
           <ui:TypeInto.Target>
             <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="7a282c72-37b3-431f-81d5-d939bec22d37" InformativeScreenshot="66b8f47bb505e723631c39605c1707ae" Selector="&lt;wnd app='saplogon.exe' cls='#32770' title='Upload Order To SAP' idx='*' /&gt;&lt;sap id='usr/ctxtDY_FILENAME' /&gt;">
               <ui:Target.TimeoutMS>
@@ -708,7 +707,7 @@
             </ui:Target>
           </ui:TypeInto.Target>
         </ui:TypeInto>
-        <ucas:ClickToolbarButton ContinueOnError="{x:Null}" DelayAfter="{x:Null}" DelayBefore="{x:Null}" AlterIfDisabled="True" DisplayName="Click Toolbar Button 'Button  Generate'" sap:VirtualizedContainerService.HintSize="346,159" sap2010:WorkflowViewState.IdRef="ClickToolbarButton_44" Item="Create New File   (Enter)">
+        <ucas:ClickToolbarButton ContinueOnError="{x:Null}" DelayAfter="{x:Null}" DelayBefore="{x:Null}" AlterIfDisabled="True" DisplayName="Click Toolbar Button 'Button  Generate'" sap:VirtualizedContainerService.HintSize="379,159" sap2010:WorkflowViewState.IdRef="ClickToolbarButton_44" Item="Create New File   (Enter)">
           <ucas:ClickToolbarButton.Items>
             <scg:List x:TypeArguments="x:String" Capacity="4">
               <x:String xml:space="preserve">Create New File   (Enter)</x:String>
@@ -1521,7 +1520,7 @@
           </ui:Click.Target>
         </ui:Click>
       </Sequence>
-      <Sequence x:Key="Regular Order Dealer Khusus" DisplayName="Regular Order Dealer Khusus" sap:VirtualizedContainerService.HintSize="377,2203" sap2010:WorkflowViewState.IdRef="Sequence_9">
+      <Sequence x:Key="Regular Order Dealer Khusus" DisplayName="Regular Order Dealer Khusus" sap:VirtualizedContainerService.HintSize="377,2097" sap2010:WorkflowViewState.IdRef="Sequence_9">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -1864,7 +1863,7 @@
           </ui:Click.Target>
         </ui:Click>
       </Sequence>
-      <Sequence x:Key="Fix Order Dealer Khusus" DisplayName="Add Fix Order Main Dealer" sap:VirtualizedContainerService.HintSize="376,1989" sap2010:WorkflowViewState.IdRef="Sequence_10">
+      <Sequence x:Key="Fix Order Dealer Khusus" DisplayName="Add Fix Order Main Dealer" sap:VirtualizedContainerService.HintSize="376,2205" sap2010:WorkflowViewState.IdRef="Sequence_10">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
