@@ -22,7 +22,7 @@
     <x:Property Name="inner_RODK_dir" Type="InArgument(x:String)" />
     <x:Property Name="inner_RODK_cnt" Type="InOutArgument(x:String)" />
   </x:Members>
-  <sap:VirtualizedContainerService.HintSize>578,717</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>640,2817</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>ActivityBuilder_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <scg:List x:TypeArguments="x:String" Capacity="27">
@@ -56,7 +56,7 @@
     </scg:List>
   </TextExpression.NamespacesForImplementation>
   <TextExpression.ReferencesForImplementation>
-    <scg:List x:TypeArguments="AssemblyReference" Capacity="29">
+    <scg:List x:TypeArguments="AssemblyReference" Capacity="58">
       <AssemblyReference>System.Activities</AssemblyReference>
       <AssemblyReference>Microsoft.VisualBasic</AssemblyReference>
       <AssemblyReference>mscorlib</AssemblyReference>
@@ -86,9 +86,11 @@
       <AssemblyReference>UiPath.Mail.Activities</AssemblyReference>
       <AssemblyReference>UiPath.Mail.Activities.Design</AssemblyReference>
       <AssemblyReference>UiPath.System.Activities.Design</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.Composition</AssemblyReference>
+      <AssemblyReference>System.Runtime.WindowsRuntime</AssemblyReference>
     </scg:List>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="Upload Order Portal to SAP" sap:VirtualizedContainerService.HintSize="552,612" sap2010:WorkflowViewState.IdRef="Sequence_3">
+  <Sequence DisplayName="Upload Order Portal to SAP" sap:VirtualizedContainerService.HintSize="552,2652" sap2010:WorkflowViewState.IdRef="Sequence_3">
     <Sequence.Variables>
       <Variable x:TypeArguments="x:String" Name="file_name" />
     </Sequence.Variables>
@@ -97,7 +99,7 @@
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <ucas:Logon Window="{x:Null}" ConnectionName="[in_SAP_conname]" ContinueOnError="False" DelayBetweenRetries="1500" DisplayName="Open SAP Logon" sap:VirtualizedContainerService.HintSize="510,51" sap2010:WorkflowViewState.IdRef="Logon_1" Retries="10" SAPLogonPath="[in_SAP_path]">
+    <ucas:Logon Window="{x:Null}" ConnectionName="[in_SAP_conname]" ContinueOnError="False" DelayBetweenRetries="2000" DisplayName="Open SAP Logon" sap:VirtualizedContainerService.HintSize="510,51" sap2010:WorkflowViewState.IdRef="Logon_1" Retries="10" SAPLogonPath="[in_SAP_path]">
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
           <x:Boolean x:Key="IsExpanded">False</x:Boolean>
@@ -141,14 +143,14 @@
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
     </ucas:CallTransaction>
-    <Switch x:TypeArguments="x:String" DisplayName="Switch Outbound Type" Expression="[If(mailBody.Contains(&quot;choose Fix Order&quot;),&quot;Fix Order Main Dealer&quot;,&#xA;If(mailBody.Contains(&quot;FODK&quot;),&quot;Fix Order Dealer Khusus&quot;, &#xA;If(mailBody.Contains(&quot;choose Add Fix Order&quot;),&quot;Add Fix Order Main Dealer&quot;, &#xA;If(mailBody.Contains(&quot;Add Fix Order DK&quot;),&quot;Add Fix Order Dealer Khusus&quot;,&#xA;If(mailBody.Contains(&quot;choose Regular Order&quot;),&quot;Regular Order Main Dealer&quot;,&#xA;If(mailBody.Contains(&quot;RODK&quot;),&quot;Regular Order Dealer Khusus&quot;,&quot;default&quot;))))))]" sap:VirtualizedContainerService.HintSize="510,247" sap2010:WorkflowViewState.IdRef="Switch`1_4">
+    <Switch x:TypeArguments="x:String" DisplayName="Switch Outbound Type" Expression="[If(mailBody.Contains(&quot;choose Fix Order&quot;),&quot;Fix Order Main Dealer&quot;,&#xD;&#xA;If(mailBody.Contains(&quot;FODK&quot;),&quot;Fix Order Dealer Khusus&quot;, &#xD;&#xA;If(mailBody.Contains(&quot;choose Add Fix Order&quot;),&quot;Add Fix Order Main Dealer&quot;, &#xD;&#xA;If(mailBody.Contains(&quot;Add Fix Order DK&quot;),&quot;Add Fix Order Dealer Khusus&quot;,&#xD;&#xA;If(mailBody.Contains(&quot;choose Regular Order&quot;),&quot;Regular Order Main Dealer&quot;,&#xD;&#xA;If(mailBody.Contains(&quot;RODK&quot;),&quot;Regular Order Dealer Khusus&quot;,&quot;default&quot;))))))]" sap:VirtualizedContainerService.HintSize="510,2287" sap2010:WorkflowViewState.IdRef="Switch`1_4">
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
           <x:Boolean x:Key="IsExpanded">True</x:Boolean>
           <x:Boolean x:Key="IsPinned">False</x:Boolean>
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
-      <Sequence x:Key="Fix Order Main Dealer" DisplayName="Fix Order Main Dealer" sap:VirtualizedContainerService.HintSize="200,66" sap2010:WorkflowViewState.IdRef="Sequence_4">
+      <Sequence x:Key="Fix Order Main Dealer" DisplayName="Fix Order Main Dealer" sap:VirtualizedContainerService.HintSize="380,66" sap2010:WorkflowViewState.IdRef="Sequence_4">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">False</x:Boolean>
@@ -727,7 +729,7 @@
             </ui:Target>
           </ucas:ClickToolbarButton.Target>
         </ucas:ClickToolbarButton>
-        <ucas:ReadStatusbar ContinueOnError="{x:Null}" MessageData="{x:Null}" MessageId="{x:Null}" MessageNumber="{x:Null}" MessageText="{x:Null}" MessageType="{x:Null}" DisplayName="Read Statusbar 'Statusbar 254'" sap:VirtualizedContainerService.HintSize="346,51" sap2010:WorkflowViewState.IdRef="ReadStatusbar_9">
+        <ucas:ReadStatusbar ContinueOnError="{x:Null}" MessageData="{x:Null}" MessageId="{x:Null}" MessageNumber="{x:Null}" MessageText="{x:Null}" MessageType="{x:Null}" DisplayName="Read Statusbar 'Statusbar 254'" sap:VirtualizedContainerService.HintSize="379,51" sap2010:WorkflowViewState.IdRef="ReadStatusbar_9">
           <ucas:ReadStatusbar.Target>
             <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="d377baf6-cf6f-4539-93a3-6a14d942c39d" InformativeScreenshot="424457ea6a339cde55fc58a2b7b8d26a" Selector="&lt;wnd app='saplogon.exe' cls='SAP_FRONTEND_SESSION' title='Upload Order To SAP' /&gt;&lt;sap id='sbar' /&gt;">
               <ui:Target.TimeoutMS>
@@ -745,7 +747,7 @@
             </scg:Dictionary>
           </sap:WorkflowViewStateService.ViewState>
         </ucas:ReadStatusbar>
-        <ucas:ClickToolbarButton ContinueOnError="{x:Null}" DelayAfter="{x:Null}" DelayBefore="{x:Null}" AlterIfDisabled="True" DisplayName="Click Toolbar Button 'Menubar  mbar'" sap:VirtualizedContainerService.HintSize="346,159" sap2010:WorkflowViewState.IdRef="ClickToolbarButton_45" Item="System/Log off">
+        <ucas:ClickToolbarButton DelayAfter="{x:Null}" DelayBefore="{x:Null}" AlterIfDisabled="True" ContinueOnError="True" DisplayName="Click Toolbar Button 'Menubar  mbar'" sap:VirtualizedContainerService.HintSize="379,159" sap2010:WorkflowViewState.IdRef="ClickToolbarButton_45" Item="System/Log off">
           <ucas:ClickToolbarButton.Items>
             <scg:List x:TypeArguments="x:String" Capacity="50">
               <x:String>List/Exit</x:String>
@@ -811,7 +813,7 @@
             </ui:Target>
           </ucas:ClickToolbarButton.Target>
         </ucas:ClickToolbarButton>
-        <ui:Click AlterIfDisabled="{x:Null}" DelayBefore="{x:Null}" DelayMS="{x:Null}" SendWindowMessages="{x:Null}" SimulateClick="{x:Null}" ClickType="CLICK_SINGLE" DisplayName="Click 'Button  Yes'" sap:VirtualizedContainerService.HintSize="346,106" sap2010:WorkflowViewState.IdRef="Click_42" KeyModifiers="None" MouseButton="BTN_LEFT">
+        <ui:Click AlterIfDisabled="{x:Null}" DelayBefore="{x:Null}" DelayMS="{x:Null}" SendWindowMessages="{x:Null}" SimulateClick="{x:Null}" ClickType="CLICK_SINGLE" ContinueOnError="True" DisplayName="Click 'Button  Yes'" sap:VirtualizedContainerService.HintSize="379,106" sap2010:WorkflowViewState.IdRef="Click_42" KeyModifiers="None" MouseButton="BTN_LEFT">
           <ui:Click.CursorPosition>
             <ui:CursorPosition Position="Center">
               <ui:CursorPosition.OffsetX>
@@ -1520,7 +1522,7 @@
           </ui:Click.Target>
         </ui:Click>
       </Sequence>
-      <Sequence x:Key="Regular Order Dealer Khusus" DisplayName="Regular Order Dealer Khusus" sap:VirtualizedContainerService.HintSize="377,2097" sap2010:WorkflowViewState.IdRef="Sequence_9">
+      <Sequence x:Key="Regular Order Dealer Khusus" DisplayName="Regular Order Dealer Khusus" sap:VirtualizedContainerService.HintSize="377,1989" sap2010:WorkflowViewState.IdRef="Sequence_9">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -1863,7 +1865,7 @@
           </ui:Click.Target>
         </ui:Click>
       </Sequence>
-      <Sequence x:Key="Fix Order Dealer Khusus" DisplayName="Add Fix Order Main Dealer" sap:VirtualizedContainerService.HintSize="376,2205" sap2010:WorkflowViewState.IdRef="Sequence_10">
+      <Sequence x:Key="Fix Order Dealer Khusus" DisplayName="Add Fix Order Main Dealer" sap:VirtualizedContainerService.HintSize="376,1989" sap2010:WorkflowViewState.IdRef="Sequence_10">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>

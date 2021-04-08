@@ -5,7 +5,7 @@
   <mva:VisualBasic.Settings>
     <x:Null />
   </mva:VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>624,718</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>640,818</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>ActivityBuilder_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <scg:List x:TypeArguments="x:String" Capacity="48">
@@ -106,138 +106,70 @@
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
         <av:Point x:Key="ShapeLocation">170,0</av:Point>
         <av:Size x:Key="ShapeSize">60,75</av:Size>
-        <av:PointCollection x:Key="ConnectorLocation">200,75 200,105 201,105 201,125</av:PointCollection>
+        <av:PointCollection x:Key="ConnectorLocation">200,75 200,125</av:PointCollection>
         <x:Double x:Key="Width">600</x:Double>
         <x:Double x:Key="Height">617</x:Double>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
     <Flowchart.StartNode>
-      <x:Reference>__ReferenceID3</x:Reference>
+      <x:Reference>__ReferenceID0</x:Reference>
     </Flowchart.StartNode>
     <FlowStep x:Name="__ReferenceID0">
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
-          <av:Point x:Key="ShapeLocation">101,243</av:Point>
-          <av:Size x:Key="ShapeSize">200,52</av:Size>
-          <av:PointCollection x:Key="ConnectorLocation">201,295 201,345</av:PointCollection>
+          <av:Point x:Key="ShapeLocation">100,125</av:Point>
+          <av:Size x:Key="ShapeSize">200,51</av:Size>
+          <av:PointCollection x:Key="ConnectorLocation">200,176 200,206 201,206 201,226</av:PointCollection>
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
-      <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" DisplayName="Invoke config" sap:VirtualizedContainerService.HintSize="200,52" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_4" UnSafe="False" WorkflowFileName="config.xaml">
+      <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" DisplayName="Invoke config" sap:VirtualizedContainerService.HintSize="334,112" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_4" UnSafe="False" WorkflowFileName="config.xaml">
         <ui:InvokeWorkflowFile.Arguments>
-          <OutArgument x:TypeArguments="x:String" x:Key="out_account">
-            <mva:VisualBasicReference x:TypeArguments="x:String" ExpressionText="var_account" />
-          </OutArgument>
-          <OutArgument x:TypeArguments="x:String" x:Key="out_mail_folder">
-            <mva:VisualBasicReference x:TypeArguments="x:String" ExpressionText="var_mail_folder" />
-          </OutArgument>
-          <OutArgument x:TypeArguments="x:String" x:Key="out_sender_address">
-            <mva:VisualBasicReference x:TypeArguments="x:String" ExpressionText="var_sender_address" />
-          </OutArgument>
-          <OutArgument x:TypeArguments="x:String" x:Key="out_SAP_path">
-            <mva:VisualBasicReference x:TypeArguments="x:String" ExpressionText="var_SAP_path" />
-          </OutArgument>
-          <OutArgument x:TypeArguments="x:String" x:Key="out_SAP_conname">
-            <mva:VisualBasicReference x:TypeArguments="x:String" ExpressionText="var_SAP_conname" />
-          </OutArgument>
-          <OutArgument x:TypeArguments="x:String" x:Key="out_SAP_username">
-            <mva:VisualBasicReference x:TypeArguments="x:String" ExpressionText="var_SAP_username" />
-          </OutArgument>
-          <OutArgument x:TypeArguments="x:String" x:Key="out_SAP_password">
-            <mva:VisualBasicReference x:TypeArguments="x:String" ExpressionText="var_SAP_password" />
-          </OutArgument>
-          <OutArgument x:TypeArguments="x:String" x:Key="out_SAP_client">
-            <mva:VisualBasicReference x:TypeArguments="x:String" ExpressionText="var_SAP_client" />
-          </OutArgument>
-          <OutArgument x:TypeArguments="x:String" x:Key="out_SAP_lang">
-            <mva:VisualBasicReference x:TypeArguments="x:String" ExpressionText="var_SAP_lang" />
-          </OutArgument>
-          <OutArgument x:TypeArguments="x:String" x:Key="out_SLS_dir">
-            <mva:VisualBasicReference x:TypeArguments="x:String" ExpressionText="var_SLS_dir" />
-          </OutArgument>
-          <OutArgument x:TypeArguments="x:String" x:Key="out_SLS_cnt">
-            <mva:VisualBasicReference x:TypeArguments="x:String" ExpressionText="var_SLS_cnt" />
-          </OutArgument>
-          <OutArgument x:TypeArguments="x:String" x:Key="out_B2B_dir">
-            <mva:VisualBasicReference x:TypeArguments="x:String" ExpressionText="var_B2B_dir" />
-          </OutArgument>
-          <OutArgument x:TypeArguments="x:String" x:Key="out_B2B_cnt">
-            <mva:VisualBasicReference x:TypeArguments="x:String" ExpressionText="var_B2B_cnt" />
-          </OutArgument>
-          <OutArgument x:TypeArguments="x:String" x:Key="out_PROD_dir">
-            <mva:VisualBasicReference x:TypeArguments="x:String" ExpressionText="var_PROD_dir" />
-          </OutArgument>
-          <OutArgument x:TypeArguments="x:String" x:Key="out_PROD_cnt">
-            <mva:VisualBasicReference x:TypeArguments="x:String" ExpressionText="var_PROD_cnt" />
-          </OutArgument>
-          <OutArgument x:TypeArguments="x:String" x:Key="out_ECM_cnt">
-            <mva:VisualBasicReference x:TypeArguments="x:String" ExpressionText="var_ECM_cnt" />
-          </OutArgument>
-          <OutArgument x:TypeArguments="x:String" x:Key="out_ECM_dir">
-            <mva:VisualBasicReference x:TypeArguments="x:String" ExpressionText="var_ECM_dir" />
-          </OutArgument>
-          <OutArgument x:TypeArguments="x:String" x:Key="out_PFI_cnt">
-            <mva:VisualBasicReference x:TypeArguments="x:String" ExpressionText="var_PFI_cnt" />
-          </OutArgument>
-          <OutArgument x:TypeArguments="x:String" x:Key="out_PFI_dir">
-            <mva:VisualBasicReference x:TypeArguments="x:String" ExpressionText="var_PFI_dir" />
-          </OutArgument>
-          <OutArgument x:TypeArguments="x:String" x:Key="out_TEMP_dir">
-            <mva:VisualBasicReference x:TypeArguments="x:String" ExpressionText="var_TEMP_dir" />
-          </OutArgument>
-          <OutArgument x:TypeArguments="x:String" x:Key="out_TEMP_cnt">
-            <mva:VisualBasicReference x:TypeArguments="x:String" ExpressionText="var_TEMP_cnt" />
-          </OutArgument>
-          <OutArgument x:TypeArguments="x:String" x:Key="out_FOMD_dir">
-            <mva:VisualBasicReference x:TypeArguments="x:String" ExpressionText="var_FOMD_dir" />
-          </OutArgument>
-          <OutArgument x:TypeArguments="x:String" x:Key="out_FOMD_cnt">
-            <mva:VisualBasicReference x:TypeArguments="x:String" ExpressionText="var_FOMD_cnt" />
-          </OutArgument>
-          <OutArgument x:TypeArguments="x:String" x:Key="out_FODK_dir">
-            <mva:VisualBasicReference x:TypeArguments="x:String" ExpressionText="var_FODK_dir" />
-          </OutArgument>
-          <OutArgument x:TypeArguments="x:String" x:Key="out_FODK_cnt">
-            <mva:VisualBasicReference x:TypeArguments="x:String" ExpressionText="var_FODK_cnt" />
-          </OutArgument>
-          <OutArgument x:TypeArguments="x:String" x:Key="out_AFOMD_dir">
-            <mva:VisualBasicReference x:TypeArguments="x:String" ExpressionText="var_AFOMD_dir" />
-          </OutArgument>
-          <OutArgument x:TypeArguments="x:String" x:Key="out_AFOMD_cnt">
-            <mva:VisualBasicReference x:TypeArguments="x:String" ExpressionText="var_AFOMD_cnt" />
-          </OutArgument>
-          <OutArgument x:TypeArguments="x:String" x:Key="out_AFODK_dir">
-            <mva:VisualBasicReference x:TypeArguments="x:String" ExpressionText="var_AFODK_dir" />
-          </OutArgument>
-          <OutArgument x:TypeArguments="x:String" x:Key="out_AFODK_cnt">
-            <mva:VisualBasicReference x:TypeArguments="x:String" ExpressionText="var_AFODK_cnt" />
-          </OutArgument>
-          <OutArgument x:TypeArguments="x:String" x:Key="out_ROMD_dir">
-            <mva:VisualBasicReference x:TypeArguments="x:String" ExpressionText="var_ROMD_dir" />
-          </OutArgument>
-          <OutArgument x:TypeArguments="x:String" x:Key="out_ROMD_cnt">
-            <mva:VisualBasicReference x:TypeArguments="x:String" ExpressionText="var_ROMD_cnt" />
-          </OutArgument>
-          <OutArgument x:TypeArguments="x:String" x:Key="out_RODK_dir">
-            <mva:VisualBasicReference x:TypeArguments="x:String" ExpressionText="var_RODK_dir" />
-          </OutArgument>
-          <OutArgument x:TypeArguments="x:String" x:Key="out_RODK_cnt">
-            <mva:VisualBasicReference x:TypeArguments="x:String" ExpressionText="var_RODK_cnt" />
-          </OutArgument>
-          <InArgument x:TypeArguments="x:String" x:Key="in_config_file_path">
-            <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="out_config_file_path" />
-          </InArgument>
+          <OutArgument x:TypeArguments="x:String" x:Key="out_account">[var_account]</OutArgument>
+          <OutArgument x:TypeArguments="x:String" x:Key="out_mail_folder">[var_mail_folder]</OutArgument>
+          <OutArgument x:TypeArguments="x:String" x:Key="out_sender_address">[var_sender_address]</OutArgument>
+          <OutArgument x:TypeArguments="x:String" x:Key="out_SAP_path">[var_SAP_path]</OutArgument>
+          <OutArgument x:TypeArguments="x:String" x:Key="out_SAP_conname">[var_SAP_conname]</OutArgument>
+          <OutArgument x:TypeArguments="x:String" x:Key="out_SAP_username">[var_SAP_username]</OutArgument>
+          <OutArgument x:TypeArguments="x:String" x:Key="out_SAP_password">[var_SAP_password]</OutArgument>
+          <OutArgument x:TypeArguments="x:String" x:Key="out_SAP_client">[var_SAP_client]</OutArgument>
+          <OutArgument x:TypeArguments="x:String" x:Key="out_SAP_lang">[var_SAP_lang]</OutArgument>
+          <OutArgument x:TypeArguments="x:String" x:Key="out_SLS_dir">[var_SLS_dir]</OutArgument>
+          <OutArgument x:TypeArguments="x:String" x:Key="out_SLS_cnt">[var_SLS_cnt]</OutArgument>
+          <OutArgument x:TypeArguments="x:String" x:Key="out_B2B_dir">[var_B2B_dir]</OutArgument>
+          <OutArgument x:TypeArguments="x:String" x:Key="out_B2B_cnt">[var_B2B_cnt]</OutArgument>
+          <OutArgument x:TypeArguments="x:String" x:Key="out_PROD_dir">[var_PROD_dir]</OutArgument>
+          <OutArgument x:TypeArguments="x:String" x:Key="out_PROD_cnt">[var_PROD_cnt]</OutArgument>
+          <OutArgument x:TypeArguments="x:String" x:Key="out_ECM_cnt">[var_ECM_cnt]</OutArgument>
+          <OutArgument x:TypeArguments="x:String" x:Key="out_ECM_dir">[var_ECM_dir]</OutArgument>
+          <OutArgument x:TypeArguments="x:String" x:Key="out_PFI_cnt">[var_PFI_cnt]</OutArgument>
+          <OutArgument x:TypeArguments="x:String" x:Key="out_PFI_dir">[var_PFI_dir]</OutArgument>
+          <OutArgument x:TypeArguments="x:String" x:Key="out_TEMP_dir">[var_TEMP_dir]</OutArgument>
+          <OutArgument x:TypeArguments="x:String" x:Key="out_TEMP_cnt">[var_TEMP_cnt]</OutArgument>
+          <OutArgument x:TypeArguments="x:String" x:Key="out_FOMD_dir">[var_FOMD_dir]</OutArgument>
+          <OutArgument x:TypeArguments="x:String" x:Key="out_FOMD_cnt">[var_FOMD_cnt]</OutArgument>
+          <OutArgument x:TypeArguments="x:String" x:Key="out_FODK_dir">[var_FODK_dir]</OutArgument>
+          <OutArgument x:TypeArguments="x:String" x:Key="out_FODK_cnt">[var_FODK_cnt]</OutArgument>
+          <OutArgument x:TypeArguments="x:String" x:Key="out_AFOMD_dir">[var_AFOMD_dir]</OutArgument>
+          <OutArgument x:TypeArguments="x:String" x:Key="out_AFOMD_cnt">[var_AFOMD_cnt]</OutArgument>
+          <OutArgument x:TypeArguments="x:String" x:Key="out_AFODK_dir">[var_AFODK_dir]</OutArgument>
+          <OutArgument x:TypeArguments="x:String" x:Key="out_AFODK_cnt">[var_AFODK_cnt]</OutArgument>
+          <OutArgument x:TypeArguments="x:String" x:Key="out_ROMD_dir">[var_ROMD_dir]</OutArgument>
+          <OutArgument x:TypeArguments="x:String" x:Key="out_ROMD_cnt">[var_ROMD_cnt]</OutArgument>
+          <OutArgument x:TypeArguments="x:String" x:Key="out_RODK_dir">[var_RODK_dir]</OutArgument>
+          <OutArgument x:TypeArguments="x:String" x:Key="out_RODK_cnt">[var_RODK_cnt]</OutArgument>
+          <InArgument x:TypeArguments="x:String" x:Key="in_config_file_path">[out_config_file_path]</InArgument>
         </ui:InvokeWorkflowFile.Arguments>
       </ui:InvokeWorkflowFile>
       <FlowStep.Next>
         <FlowStep x:Name="__ReferenceID1">
           <sap:WorkflowViewStateService.ViewState>
             <scg:Dictionary x:TypeArguments="x:String, x:Object">
-              <av:Point x:Key="ShapeLocation">101,345</av:Point>
-              <av:Size x:Key="ShapeSize">200,52</av:Size>
-              <av:PointCollection x:Key="ConnectorLocation">201,397 201,447</av:PointCollection>
+              <av:Point x:Key="ShapeLocation">101,226</av:Point>
+              <av:Size x:Key="ShapeSize">200,51</av:Size>
+              <av:PointCollection x:Key="ConnectorLocation">201,277 201,327</av:PointCollection>
             </scg:Dictionary>
           </sap:WorkflowViewStateService.ViewState>
-          <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" DisplayName="Invoke readnexecution" sap:VirtualizedContainerService.HintSize="200,52" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_6" UnSafe="False" WorkflowFileName="readnexecution.xaml">
+          <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" DisplayName="Invoke readnexecution" sap:VirtualizedContainerService.HintSize="200,51" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_6" UnSafe="False" WorkflowFileName="readnexecution.xaml">
             <ui:InvokeWorkflowFile.Arguments>
               <InArgument x:TypeArguments="x:String" x:Key="in_email_account">[var_account]</InArgument>
               <InArgument x:TypeArguments="x:String" x:Key="in_email_folder">[var_mail_folder]</InArgument>
@@ -283,9 +215,9 @@
             <FlowStep x:Name="__ReferenceID2">
               <sap:WorkflowViewStateService.ViewState>
                 <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                  <av:Point x:Key="ShapeLocation">101,447</av:Point>
+                  <av:Point x:Key="ShapeLocation">101,327</av:Point>
                   <av:Size x:Key="ShapeSize">200,22</av:Size>
-                  <av:PointCollection x:Key="ConnectorLocation">301,458 331,458 331,269 301,269</av:PointCollection>
+                  <av:PointCollection x:Key="ConnectorLocation">301,338 331,338 331,150.5 300,150.5</av:PointCollection>
                 </scg:Dictionary>
               </sap:WorkflowViewStateService.ViewState>
               <Delay DisplayName="Loop Every X Minutes" Duration="00:02:00" sap:VirtualizedContainerService.HintSize="200,22" sap2010:WorkflowViewState.IdRef="Delay_1">
@@ -305,29 +237,5 @@
     </FlowStep>
     <x:Reference>__ReferenceID1</x:Reference>
     <x:Reference>__ReferenceID2</x:Reference>
-    <FlowStep x:Name="__ReferenceID3">
-      <sap:WorkflowViewStateService.ViewState>
-        <scg:Dictionary x:TypeArguments="x:String, x:Object">
-          <av:Point x:Key="ShapeLocation">101,125</av:Point>
-          <av:Size x:Key="ShapeSize">200,68</av:Size>
-          <av:PointCollection x:Key="ConnectorLocation">201,193 201,243</av:PointCollection>
-        </scg:Dictionary>
-      </sap:WorkflowViewStateService.ViewState>
-      <Sequence DisplayName="Config Initialization" sap:VirtualizedContainerService.HintSize="200,68" sap2010:WorkflowViewState.IdRef="Sequence_1">
-        <sap:WorkflowViewStateService.ViewState>
-          <scg:Dictionary x:TypeArguments="x:String, x:Object">
-            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-          </scg:Dictionary>
-        </sap:WorkflowViewStateService.ViewState>
-        <ui:InputDialog Options="{x:Null}" OptionsString="{x:Null}" DisplayName="Insert Config File Path" sap:VirtualizedContainerService.HintSize="334,242" sap2010:WorkflowViewState.IdRef="InputDialog_2" IsPassword="False" Label="Mohon masukkan lokasi config file di lokal komputer anda. Contoh: D:\Nado_Test_RPA_Prod\ConfigFile\ConfigFile.xlsx " Title="ConfigFile Location">
-          <ui:InputDialog.Result>
-            <OutArgument x:TypeArguments="x:String">[out_config_file_path]</OutArgument>
-          </ui:InputDialog.Result>
-        </ui:InputDialog>
-      </Sequence>
-      <FlowStep.Next>
-        <x:Reference>__ReferenceID0</x:Reference>
-      </FlowStep.Next>
-    </FlowStep>
   </Flowchart>
 </Activity>

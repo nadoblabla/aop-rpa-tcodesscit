@@ -1,4 +1,4 @@
-<Activity mc:Ignorable="sap sap2010" x:Class="Variable_Assignment" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+<Activity mc:Ignorable="sap sap2010" x:Class="Variable_Assignment" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <x:Members>
     <x:Property Name="out_account" Type="OutArgument(x:String)" />
     <x:Property Name="out_mail_folder" Type="OutArgument(x:String)" />
@@ -35,10 +35,10 @@
     <x:Property Name="out_RODK_cnt" Type="OutArgument(x:String)" />
     <x:Property Name="in_config_file_path" Type="InArgument(x:String)" />
   </x:Members>
-  <sap:VirtualizedContainerService.HintSize>578,2510</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>640,554</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>ActivityBuilder_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
-    <scg:List x:TypeArguments="x:String" Capacity="22">
+    <scg:List x:TypeArguments="x:String" Capacity="44">
       <x:String>System.Activities</x:String>
       <x:String>System.Activities.Statements</x:String>
       <x:String>System.Collections</x:String>
@@ -61,10 +61,13 @@
       <x:String>System.Runtime.Serialization</x:String>
       <x:String>UiPath.Excel</x:String>
       <x:String>UiPath.Excel.Activities</x:String>
+      <x:String>UiPath.Mail.Outlook.Activities</x:String>
+      <x:String>UiPath.Mail.Activities</x:String>
+      <x:String>System.Runtime.InteropServices</x:String>
     </scg:List>
   </TextExpression.NamespacesForImplementation>
   <TextExpression.ReferencesForImplementation>
-    <scg:List x:TypeArguments="AssemblyReference" Capacity="28">
+    <scg:List x:TypeArguments="AssemblyReference" Capacity="56">
       <AssemblyReference>System.Activities</AssemblyReference>
       <AssemblyReference>Microsoft.VisualBasic</AssemblyReference>
       <AssemblyReference>mscorlib</AssemblyReference>
@@ -93,539 +96,588 @@
       <AssemblyReference>Microsoft.Bcl.AsyncInterfaces</AssemblyReference>
       <AssemblyReference>UiPath.Excel.Activities.Design</AssemblyReference>
       <AssemblyReference>UiPath.Excel.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities.Design</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.Composition</AssemblyReference>
+      <AssemblyReference>UiPath.Mail.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Mail.Activities.Design</AssemblyReference>
     </scg:List>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="Configuration" sap:VirtualizedContainerService.HintSize="494,2405" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="Configuration" sap:VirtualizedContainerService.HintSize="476,389" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
         <x:Boolean x:Key="IsPinned">False</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <ui:ExcelApplicationScope Password="{x:Null}" DisplayName="Excel Application Scope" sap:VirtualizedContainerService.HintSize="452,2313" sap2010:WorkflowViewState.IdRef="ExcelApplicationScope_1" InstanceCachePeriod="3000" WorkbookPath="[in_config_file_path]">
-      <ui:ExcelApplicationScope.Body>
-        <ActivityAction x:TypeArguments="ui:WorkbookApplication">
-          <ActivityAction.Argument>
-            <DelegateInArgument x:TypeArguments="ui:WorkbookApplication" Name="ExcelWorkbookScope" />
-          </ActivityAction.Argument>
-          <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="418,2204" sap2010:WorkflowViewState.IdRef="Sequence_13">
-            <sap:WorkflowViewStateService.ViewState>
-              <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                <x:Boolean x:Key="IsPinned">False</x:Boolean>
-              </scg:Dictionary>
-            </sap:WorkflowViewStateService.ViewState>
-            <Sequence DisplayName="Email Settings" sap:VirtualizedContainerService.HintSize="376,66" sap2010:WorkflowViewState.IdRef="Sequence_12">
-              <sap:WorkflowViewStateService.ViewState>
-                <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                  <x:Boolean x:Key="IsExpanded">False</x:Boolean>
-                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
-                </scg:Dictionary>
-              </sap:WorkflowViewStateService.ViewState>
-              <ui:ExcelReadCell Cell="C5" DisplayName="Get Outlook Account" sap:VirtualizedContainerService.HintSize="334,59" sap2010:WorkflowViewState.IdRef="ExcelReadCell_1" SheetName="The Form">
-                <ui:ExcelReadCell.Result>
-                  <OutArgument x:TypeArguments="x:String">[out_account]</OutArgument>
-                </ui:ExcelReadCell.Result>
-              </ui:ExcelReadCell>
-              <ui:ExcelReadCell Cell="C6" DisplayName="Get Outlook Folder" sap:VirtualizedContainerService.HintSize="334,59" sap2010:WorkflowViewState.IdRef="ExcelReadCell_2" SheetName="The Form">
-                <ui:ExcelReadCell.Result>
-                  <OutArgument x:TypeArguments="x:String">[out_mail_folder]</OutArgument>
-                </ui:ExcelReadCell.Result>
-              </ui:ExcelReadCell>
-              <ui:ExcelReadCell Cell="C7" DisplayName="Get Sender Address" sap:VirtualizedContainerService.HintSize="334,59" sap2010:WorkflowViewState.IdRef="ExcelReadCell_3" SheetName="The Form">
-                <ui:ExcelReadCell.Result>
-                  <OutArgument x:TypeArguments="x:String">[out_sender_address]</OutArgument>
-                </ui:ExcelReadCell.Result>
-              </ui:ExcelReadCell>
-            </Sequence>
-            <Sequence sap2010:Annotation.AnnotationText="Konfigurasi terkait di direktori mana file spreadsheet hasil generate SAP akan disimpan. Counter adalah mekanisme yang dibuat developer untuk memberi penamaan dan penomoran file." DisplayName="Save File Settings" sap:VirtualizedContainerService.HintSize="376,1320" sap2010:WorkflowViewState.IdRef="Sequence_26">
-              <sap:WorkflowViewStateService.ViewState>
-                <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
-                  <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
-                </scg:Dictionary>
-              </sap:WorkflowViewStateService.ViewState>
-              <Sequence DisplayName="Upload FOMD Dir" sap:VirtualizedContainerService.HintSize="200,66" sap2010:WorkflowViewState.IdRef="Sequence_14">
-                <Sequence.Variables>
-                  <Variable x:TypeArguments="x:Boolean" Name="fomdcnt_exist" />
-                </Sequence.Variables>
-                <sap:WorkflowViewStateService.ViewState>
-                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                    <x:Boolean x:Key="IsExpanded">False</x:Boolean>
-                    <x:Boolean x:Key="IsPinned">False</x:Boolean>
-                  </scg:Dictionary>
-                </sap:WorkflowViewStateService.ViewState>
-                <ui:ExcelReadCell Cell="C13" DisplayName="Get FOMD Dir" sap:VirtualizedContainerService.HintSize="484,59" sap2010:WorkflowViewState.IdRef="ExcelReadCell_4" SheetName="The Form">
-                  <ui:ExcelReadCell.Result>
-                    <OutArgument x:TypeArguments="x:String">[out_FOMD_dir]</OutArgument>
-                  </ui:ExcelReadCell.Result>
-                </ui:ExcelReadCell>
-                <Assign sap:VirtualizedContainerService.HintSize="484,60" sap2010:WorkflowViewState.IdRef="Assign_25">
-                  <Assign.To>
-                    <OutArgument x:TypeArguments="x:String">[out_FOMD_cnt]</OutArgument>
-                  </Assign.To>
-                  <Assign.Value>
-                    <InArgument x:TypeArguments="x:String">[out_FOMD_dir+"\counter.txt"]</InArgument>
-                  </Assign.Value>
-                </Assign>
-                <ui:PathExists DisplayName="Path Exists" Exists="[fomdcnt_exist]" sap:VirtualizedContainerService.HintSize="484,89" sap2010:WorkflowViewState.IdRef="PathExists_7" Path="[out_FOMD_cnt]" PathType="File" />
-                <If Condition="[fomdcnt_exist]" sap:VirtualizedContainerService.HintSize="484,279" sap2010:WorkflowViewState.IdRef="If_7">
-                  <If.Else>
-                    <ui:CreateFile ContinueOnError="{x:Null}" DisplayName="Create File" sap:VirtualizedContainerService.HintSize="334,132" sap2010:WorkflowViewState.IdRef="CreateFile_12" Name="counter.txt" Path="[out_FOMD_dir]">
-                      <sap:WorkflowViewStateService.ViewState>
-                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                          <x:Boolean x:Key="IsPinned">False</x:Boolean>
-                        </scg:Dictionary>
-                      </sap:WorkflowViewStateService.ViewState>
-                    </ui:CreateFile>
-                  </If.Else>
-                </If>
-              </Sequence>
-              <Sequence DisplayName="Upload FODK Dir" sap:VirtualizedContainerService.HintSize="200,66" sap2010:WorkflowViewState.IdRef="Sequence_15">
-                <Sequence.Variables>
-                  <Variable x:TypeArguments="x:Boolean" Name="fodkcnt_exist" />
-                </Sequence.Variables>
-                <sap:WorkflowViewStateService.ViewState>
-                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                    <x:Boolean x:Key="IsExpanded">False</x:Boolean>
-                    <x:Boolean x:Key="IsPinned">False</x:Boolean>
-                  </scg:Dictionary>
-                </sap:WorkflowViewStateService.ViewState>
-                <ui:ExcelReadCell Cell="C14" DisplayName="Get FODK Dir" sap:VirtualizedContainerService.HintSize="484,59" sap2010:WorkflowViewState.IdRef="ExcelReadCell_5" SheetName="The Form">
-                  <ui:ExcelReadCell.Result>
-                    <OutArgument x:TypeArguments="x:String">[out_FODK_dir]</OutArgument>
-                  </ui:ExcelReadCell.Result>
-                </ui:ExcelReadCell>
-                <Assign sap:VirtualizedContainerService.HintSize="484,60" sap2010:WorkflowViewState.IdRef="Assign_26">
-                  <Assign.To>
-                    <OutArgument x:TypeArguments="x:String">[out_FODK_cnt]</OutArgument>
-                  </Assign.To>
-                  <Assign.Value>
-                    <InArgument x:TypeArguments="x:String">[out_FODK_dir+"\counter.txt"]</InArgument>
-                  </Assign.Value>
-                </Assign>
-                <ui:PathExists DisplayName="Path Exists" Exists="[fodkcnt_exist]" sap:VirtualizedContainerService.HintSize="484,89" sap2010:WorkflowViewState.IdRef="PathExists_8" Path="[out_FODK_cnt]" PathType="File" />
-                <If Condition="[fodkcnt_exist]" sap:VirtualizedContainerService.HintSize="484,279" sap2010:WorkflowViewState.IdRef="If_8">
-                  <If.Else>
-                    <ui:CreateFile ContinueOnError="{x:Null}" DisplayName="Create File" sap:VirtualizedContainerService.HintSize="334,132" sap2010:WorkflowViewState.IdRef="CreateFile_13" Name="counter.txt" Path="[out_FODK_dir]">
-                      <sap:WorkflowViewStateService.ViewState>
-                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                          <x:Boolean x:Key="IsPinned">False</x:Boolean>
-                        </scg:Dictionary>
-                      </sap:WorkflowViewStateService.ViewState>
-                    </ui:CreateFile>
-                  </If.Else>
-                </If>
-              </Sequence>
-              <Sequence DisplayName="Upload Add FOMD Dir" sap:VirtualizedContainerService.HintSize="200,66" sap2010:WorkflowViewState.IdRef="Sequence_16">
-                <Sequence.Variables>
-                  <Variable x:TypeArguments="x:Boolean" Name="afomdcnt_exist" />
-                </Sequence.Variables>
-                <sap:WorkflowViewStateService.ViewState>
-                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                    <x:Boolean x:Key="IsExpanded">False</x:Boolean>
-                    <x:Boolean x:Key="IsPinned">False</x:Boolean>
-                  </scg:Dictionary>
-                </sap:WorkflowViewStateService.ViewState>
-                <ui:ExcelReadCell Cell="C15" DisplayName="Get Add FOMD Dir" sap:VirtualizedContainerService.HintSize="484,59" sap2010:WorkflowViewState.IdRef="ExcelReadCell_6" SheetName="The Form">
-                  <ui:ExcelReadCell.Result>
-                    <OutArgument x:TypeArguments="x:String">[out_AFOMD_dir]</OutArgument>
-                  </ui:ExcelReadCell.Result>
-                </ui:ExcelReadCell>
-                <Assign sap:VirtualizedContainerService.HintSize="484,60" sap2010:WorkflowViewState.IdRef="Assign_27">
-                  <Assign.To>
-                    <OutArgument x:TypeArguments="x:String">[out_AFOMD_cnt]</OutArgument>
-                  </Assign.To>
-                  <Assign.Value>
-                    <InArgument x:TypeArguments="x:String">[out_AFOMD_dir+"\counter.txt"]</InArgument>
-                  </Assign.Value>
-                </Assign>
-                <ui:PathExists DisplayName="Path Exists" Exists="[afomdcnt_exist]" sap:VirtualizedContainerService.HintSize="484,89" sap2010:WorkflowViewState.IdRef="PathExists_9" Path="[out_AFOMD_cnt]" PathType="File" />
-                <If Condition="[afomdcnt_exist]" sap:VirtualizedContainerService.HintSize="484,279" sap2010:WorkflowViewState.IdRef="If_9">
-                  <If.Else>
-                    <ui:CreateFile ContinueOnError="{x:Null}" DisplayName="Create File" sap:VirtualizedContainerService.HintSize="334,132" sap2010:WorkflowViewState.IdRef="CreateFile_14" Name="counter.txt" Path="[out_AFOMD_dir]">
-                      <sap:WorkflowViewStateService.ViewState>
-                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                          <x:Boolean x:Key="IsPinned">False</x:Boolean>
-                        </scg:Dictionary>
-                      </sap:WorkflowViewStateService.ViewState>
-                    </ui:CreateFile>
-                  </If.Else>
-                </If>
-              </Sequence>
-              <Sequence DisplayName="Upload Add FODK Dir" sap:VirtualizedContainerService.HintSize="200,66" sap2010:WorkflowViewState.IdRef="Sequence_17">
-                <Sequence.Variables>
-                  <Variable x:TypeArguments="x:Boolean" Name="afodkcnt_exist" />
-                </Sequence.Variables>
-                <sap:WorkflowViewStateService.ViewState>
-                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                    <x:Boolean x:Key="IsExpanded">False</x:Boolean>
-                    <x:Boolean x:Key="IsPinned">False</x:Boolean>
-                  </scg:Dictionary>
-                </sap:WorkflowViewStateService.ViewState>
-                <ui:ExcelReadCell Cell="C16" DisplayName="Get Add FODK Dir" sap:VirtualizedContainerService.HintSize="484,59" sap2010:WorkflowViewState.IdRef="ExcelReadCell_7" SheetName="The Form">
-                  <ui:ExcelReadCell.Result>
-                    <OutArgument x:TypeArguments="x:String">[out_AFODK_dir]</OutArgument>
-                  </ui:ExcelReadCell.Result>
-                </ui:ExcelReadCell>
-                <Assign sap:VirtualizedContainerService.HintSize="484,60" sap2010:WorkflowViewState.IdRef="Assign_28">
-                  <Assign.To>
-                    <OutArgument x:TypeArguments="x:String">[out_AFODK_cnt]</OutArgument>
-                  </Assign.To>
-                  <Assign.Value>
-                    <InArgument x:TypeArguments="x:String">[out_AFODK_dir+"\counter.txt"]</InArgument>
-                  </Assign.Value>
-                </Assign>
-                <ui:PathExists DisplayName="Path Exists" Exists="[afodkcnt_exist]" sap:VirtualizedContainerService.HintSize="484,89" sap2010:WorkflowViewState.IdRef="PathExists_10" Path="[out_AFODK_cnt]" PathType="File" />
-                <If Condition="[afodkcnt_exist]" sap:VirtualizedContainerService.HintSize="484,279" sap2010:WorkflowViewState.IdRef="If_10">
-                  <If.Else>
-                    <ui:CreateFile ContinueOnError="{x:Null}" DisplayName="Create File" sap:VirtualizedContainerService.HintSize="334,132" sap2010:WorkflowViewState.IdRef="CreateFile_15" Name="counter.txt" Path="[out_AFODK_dir]">
-                      <sap:WorkflowViewStateService.ViewState>
-                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                          <x:Boolean x:Key="IsPinned">False</x:Boolean>
-                        </scg:Dictionary>
-                      </sap:WorkflowViewStateService.ViewState>
-                    </ui:CreateFile>
-                  </If.Else>
-                </If>
-              </Sequence>
-              <Sequence DisplayName="Upload ROMD Dir" sap:VirtualizedContainerService.HintSize="200,66" sap2010:WorkflowViewState.IdRef="Sequence_18">
-                <Sequence.Variables>
-                  <Variable x:TypeArguments="x:Boolean" Name="romdcnt_exist" />
-                </Sequence.Variables>
-                <sap:WorkflowViewStateService.ViewState>
-                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                    <x:Boolean x:Key="IsExpanded">False</x:Boolean>
-                    <x:Boolean x:Key="IsPinned">False</x:Boolean>
-                  </scg:Dictionary>
-                </sap:WorkflowViewStateService.ViewState>
-                <ui:ExcelReadCell Cell="C17" DisplayName="Get ROMD Dir" sap:VirtualizedContainerService.HintSize="484,59" sap2010:WorkflowViewState.IdRef="ExcelReadCell_8" SheetName="The Form">
-                  <ui:ExcelReadCell.Result>
-                    <OutArgument x:TypeArguments="x:String">[out_ROMD_dir]</OutArgument>
-                  </ui:ExcelReadCell.Result>
-                </ui:ExcelReadCell>
-                <Assign sap:VirtualizedContainerService.HintSize="484,60" sap2010:WorkflowViewState.IdRef="Assign_29">
-                  <Assign.To>
-                    <OutArgument x:TypeArguments="x:String">[out_ROMD_cnt]</OutArgument>
-                  </Assign.To>
-                  <Assign.Value>
-                    <InArgument x:TypeArguments="x:String">[out_ROMD_dir+"\counter.txt"]</InArgument>
-                  </Assign.Value>
-                </Assign>
-                <ui:PathExists DisplayName="Path Exists" Exists="[romdcnt_exist]" sap:VirtualizedContainerService.HintSize="484,89" sap2010:WorkflowViewState.IdRef="PathExists_11" Path="[out_ROMD_cnt]" PathType="File" />
-                <If Condition="[romdcnt_exist]" sap:VirtualizedContainerService.HintSize="484,279" sap2010:WorkflowViewState.IdRef="If_11">
-                  <If.Else>
-                    <ui:CreateFile ContinueOnError="{x:Null}" DisplayName="Create File" sap:VirtualizedContainerService.HintSize="334,132" sap2010:WorkflowViewState.IdRef="CreateFile_16" Name="counter.txt" Path="[out_ROMD_dir]">
-                      <sap:WorkflowViewStateService.ViewState>
-                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                          <x:Boolean x:Key="IsPinned">False</x:Boolean>
-                        </scg:Dictionary>
-                      </sap:WorkflowViewStateService.ViewState>
-                    </ui:CreateFile>
-                  </If.Else>
-                </If>
-              </Sequence>
-              <Sequence DisplayName="Upload RODK Dir" sap:VirtualizedContainerService.HintSize="200,66" sap2010:WorkflowViewState.IdRef="Sequence_19">
-                <Sequence.Variables>
-                  <Variable x:TypeArguments="x:Boolean" Name="rodkcnt_exist" />
-                </Sequence.Variables>
-                <sap:WorkflowViewStateService.ViewState>
-                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                    <x:Boolean x:Key="IsExpanded">False</x:Boolean>
-                    <x:Boolean x:Key="IsPinned">False</x:Boolean>
-                  </scg:Dictionary>
-                </sap:WorkflowViewStateService.ViewState>
-                <ui:ExcelReadCell Cell="C18" DisplayName="Get RODK Dir" sap:VirtualizedContainerService.HintSize="484,59" sap2010:WorkflowViewState.IdRef="ExcelReadCell_9" SheetName="The Form">
-                  <ui:ExcelReadCell.Result>
-                    <OutArgument x:TypeArguments="x:String">[out_RODK_dir]</OutArgument>
-                  </ui:ExcelReadCell.Result>
-                </ui:ExcelReadCell>
-                <Assign sap:VirtualizedContainerService.HintSize="484,60" sap2010:WorkflowViewState.IdRef="Assign_30">
-                  <Assign.To>
-                    <OutArgument x:TypeArguments="x:String">[out_RODK_cnt]</OutArgument>
-                  </Assign.To>
-                  <Assign.Value>
-                    <InArgument x:TypeArguments="x:String">[out_RODK_dir+"\counter.txt"]</InArgument>
-                  </Assign.Value>
-                </Assign>
-                <ui:PathExists DisplayName="Path Exists" Exists="[rodkcnt_exist]" sap:VirtualizedContainerService.HintSize="484,89" sap2010:WorkflowViewState.IdRef="PathExists_12" Path="[out_RODK_cnt]" PathType="File" />
-                <If Condition="[rodkcnt_exist]" sap:VirtualizedContainerService.HintSize="484,279" sap2010:WorkflowViewState.IdRef="If_12">
-                  <If.Else>
-                    <ui:CreateFile ContinueOnError="{x:Null}" DisplayName="Create File" sap:VirtualizedContainerService.HintSize="334,132" sap2010:WorkflowViewState.IdRef="CreateFile_17" Name="counter.txt" Path="[out_RODK_dir]">
-                      <sap:WorkflowViewStateService.ViewState>
-                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                          <x:Boolean x:Key="IsPinned">False</x:Boolean>
-                        </scg:Dictionary>
-                      </sap:WorkflowViewStateService.ViewState>
-                    </ui:CreateFile>
-                  </If.Else>
-                </If>
-              </Sequence>
-              <Sequence DisplayName="Upload B2B Dir" sap:VirtualizedContainerService.HintSize="200,66" sap2010:WorkflowViewState.IdRef="Sequence_20">
-                <Sequence.Variables>
-                  <Variable x:TypeArguments="x:Boolean" Name="b2bcnt_exist" />
-                </Sequence.Variables>
-                <sap:WorkflowViewStateService.ViewState>
-                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                    <x:Boolean x:Key="IsExpanded">False</x:Boolean>
-                    <x:Boolean x:Key="IsPinned">False</x:Boolean>
-                  </scg:Dictionary>
-                </sap:WorkflowViewStateService.ViewState>
-                <ui:ExcelReadCell Cell="C11" DisplayName="Read B2B Dir" sap:VirtualizedContainerService.HintSize="484,51" sap2010:WorkflowViewState.IdRef="ExcelReadCell_10" SheetName="The Form">
-                  <ui:ExcelReadCell.Result>
-                    <OutArgument x:TypeArguments="x:String">[out_B2B_dir]</OutArgument>
-                  </ui:ExcelReadCell.Result>
-                  <sap:WorkflowViewStateService.ViewState>
-                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                      <x:Boolean x:Key="IsExpanded">False</x:Boolean>
-                      <x:Boolean x:Key="IsPinned">False</x:Boolean>
-                    </scg:Dictionary>
-                  </sap:WorkflowViewStateService.ViewState>
-                </ui:ExcelReadCell>
-                <Assign sap:VirtualizedContainerService.HintSize="484,60" sap2010:WorkflowViewState.IdRef="Assign_31">
-                  <Assign.To>
-                    <OutArgument x:TypeArguments="x:String">[out_B2B_cnt]</OutArgument>
-                  </Assign.To>
-                  <Assign.Value>
-                    <InArgument x:TypeArguments="x:String">[out_B2B_dir+"\counter.txt"]</InArgument>
-                  </Assign.Value>
-                </Assign>
-                <ui:PathExists DisplayName="Path Exists" Exists="[b2bcnt_exist]" sap:VirtualizedContainerService.HintSize="484,89" sap2010:WorkflowViewState.IdRef="PathExists_13" Path="[out_B2B_cnt]" PathType="File" />
-                <If Condition="[b2bcnt_exist]" sap:VirtualizedContainerService.HintSize="484,279" sap2010:WorkflowViewState.IdRef="If_13">
-                  <If.Else>
-                    <ui:CreateFile ContinueOnError="{x:Null}" DisplayName="Create File" sap:VirtualizedContainerService.HintSize="334,132" sap2010:WorkflowViewState.IdRef="CreateFile_18" Name="counter.txt" Path="[out_B2B_dir]">
-                      <sap:WorkflowViewStateService.ViewState>
-                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                          <x:Boolean x:Key="IsPinned">False</x:Boolean>
-                        </scg:Dictionary>
-                      </sap:WorkflowViewStateService.ViewState>
-                    </ui:CreateFile>
-                  </If.Else>
-                </If>
-              </Sequence>
-              <Sequence DisplayName="Upload Product_MD Directories" sap:VirtualizedContainerService.HintSize="200,66" sap2010:WorkflowViewState.IdRef="Sequence_22">
-                <Sequence.Variables>
-                  <Variable x:TypeArguments="x:Boolean" Name="prodcnt_exist" />
-                </Sequence.Variables>
-                <sap:WorkflowViewStateService.ViewState>
-                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                    <x:Boolean x:Key="IsExpanded">False</x:Boolean>
-                    <x:Boolean x:Key="IsPinned">False</x:Boolean>
-                  </scg:Dictionary>
-                </sap:WorkflowViewStateService.ViewState>
-                <ui:ExcelReadCell Cell="C19" DisplayName="Read Product MD Dir" sap:VirtualizedContainerService.HintSize="334,59" sap2010:WorkflowViewState.IdRef="ExcelReadCell_11" SheetName="The Form">
-                  <ui:ExcelReadCell.Result>
-                    <OutArgument x:TypeArguments="x:String">[out_PROD_dir]</OutArgument>
-                  </ui:ExcelReadCell.Result>
-                </ui:ExcelReadCell>
-                <Assign sap:VirtualizedContainerService.HintSize="334,60" sap2010:WorkflowViewState.IdRef="Assign_34">
-                  <Assign.To>
-                    <OutArgument x:TypeArguments="x:String">[out_PROD_cnt]</OutArgument>
-                  </Assign.To>
-                  <Assign.Value>
-                    <InArgument x:TypeArguments="x:String">[out_PROD_dir+"\counter.txt"]</InArgument>
-                  </Assign.Value>
-                </Assign>
-                <ui:PathExists DisplayName="Path Exists" Exists="[prodcnt_exist]" sap:VirtualizedContainerService.HintSize="334,51" sap2010:WorkflowViewState.IdRef="PathExists_15" Path="[out_PROD_cnt]" PathType="File">
-                  <sap:WorkflowViewStateService.ViewState>
-                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                      <x:Boolean x:Key="IsExpanded">False</x:Boolean>
-                      <x:Boolean x:Key="IsPinned">False</x:Boolean>
-                    </scg:Dictionary>
-                  </sap:WorkflowViewStateService.ViewState>
-                </ui:PathExists>
-                <If Condition="[prodcnt_exist]" sap:VirtualizedContainerService.HintSize="334,51" sap2010:WorkflowViewState.IdRef="If_15">
-                  <sap:WorkflowViewStateService.ViewState>
-                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                      <x:Boolean x:Key="IsExpanded">False</x:Boolean>
-                      <x:Boolean x:Key="IsPinned">False</x:Boolean>
-                    </scg:Dictionary>
-                  </sap:WorkflowViewStateService.ViewState>
-                  <If.Else>
-                    <ui:CreateFile ContinueOnError="{x:Null}" DisplayName="Create File" sap:VirtualizedContainerService.HintSize="334,132" sap2010:WorkflowViewState.IdRef="CreateFile_20" Name="counter.txt" Path="[out_PROD_dir]">
-                      <sap:WorkflowViewStateService.ViewState>
-                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                          <x:Boolean x:Key="IsPinned">False</x:Boolean>
-                        </scg:Dictionary>
-                      </sap:WorkflowViewStateService.ViewState>
-                    </ui:CreateFile>
-                  </If.Else>
-                </If>
-              </Sequence>
-              <Sequence DisplayName="Upload ECM Directories" sap:VirtualizedContainerService.HintSize="200,66" sap2010:WorkflowViewState.IdRef="Sequence_23">
-                <Sequence.Variables>
-                  <Variable x:TypeArguments="x:Boolean" Name="ecmcnt_exist" />
-                </Sequence.Variables>
-                <sap:WorkflowViewStateService.ViewState>
-                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                    <x:Boolean x:Key="IsExpanded">False</x:Boolean>
-                    <x:Boolean x:Key="IsPinned">False</x:Boolean>
-                  </scg:Dictionary>
-                </sap:WorkflowViewStateService.ViewState>
-                <ui:ExcelReadCell Cell="C21" DisplayName="Read ECM Dir" sap:VirtualizedContainerService.HintSize="484,59" sap2010:WorkflowViewState.IdRef="ExcelReadCell_12" SheetName="The Form">
-                  <ui:ExcelReadCell.Result>
-                    <OutArgument x:TypeArguments="x:String">[out_ECM_dir]</OutArgument>
-                  </ui:ExcelReadCell.Result>
-                </ui:ExcelReadCell>
-                <Assign sap:VirtualizedContainerService.HintSize="484,60" sap2010:WorkflowViewState.IdRef="Assign_35">
-                  <Assign.To>
-                    <OutArgument x:TypeArguments="x:String">[out_ECM_cnt]</OutArgument>
-                  </Assign.To>
-                  <Assign.Value>
-                    <InArgument x:TypeArguments="x:String">[out_ECM_dir+"\counter.txt"]</InArgument>
-                  </Assign.Value>
-                </Assign>
-                <ui:PathExists DisplayName="Path Exists" Exists="[ecmcnt_exist]" sap:VirtualizedContainerService.HintSize="484,89" sap2010:WorkflowViewState.IdRef="PathExists_16" Path="[out_ECM_cnt]" PathType="File" />
-                <If Condition="[ecmcnt_exist]" sap:VirtualizedContainerService.HintSize="484,279" sap2010:WorkflowViewState.IdRef="If_16">
-                  <If.Else>
-                    <ui:CreateFile ContinueOnError="{x:Null}" DisplayName="Create File" sap:VirtualizedContainerService.HintSize="334,132" sap2010:WorkflowViewState.IdRef="CreateFile_21" Name="counter.txt" Path="[out_ECM_dir]">
-                      <sap:WorkflowViewStateService.ViewState>
-                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                          <x:Boolean x:Key="IsPinned">False</x:Boolean>
-                        </scg:Dictionary>
-                      </sap:WorkflowViewStateService.ViewState>
-                    </ui:CreateFile>
-                  </If.Else>
-                </If>
-              </Sequence>
-              <Sequence DisplayName="Upload PFI Directories" sap:VirtualizedContainerService.HintSize="200,66" sap2010:WorkflowViewState.IdRef="Sequence_24">
-                <Sequence.Variables>
-                  <Variable x:TypeArguments="x:Boolean" Name="pficnt_exist" />
-                </Sequence.Variables>
-                <sap:WorkflowViewStateService.ViewState>
-                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                    <x:Boolean x:Key="IsExpanded">False</x:Boolean>
-                    <x:Boolean x:Key="IsPinned">False</x:Boolean>
-                  </scg:Dictionary>
-                </sap:WorkflowViewStateService.ViewState>
-                <ui:ExcelReadCell Cell="C12" DisplayName="Read PFI Dir" sap:VirtualizedContainerService.HintSize="484,59" sap2010:WorkflowViewState.IdRef="ExcelReadCell_13" SheetName="The Form">
-                  <ui:ExcelReadCell.Result>
-                    <OutArgument x:TypeArguments="x:String">[out_PFI_dir]</OutArgument>
-                  </ui:ExcelReadCell.Result>
-                </ui:ExcelReadCell>
-                <Assign sap:VirtualizedContainerService.HintSize="484,60" sap2010:WorkflowViewState.IdRef="Assign_36">
-                  <Assign.To>
-                    <OutArgument x:TypeArguments="x:String">[out_PFI_cnt]</OutArgument>
-                  </Assign.To>
-                  <Assign.Value>
-                    <InArgument x:TypeArguments="x:String">[out_PFI_dir+"\counter.txt"]</InArgument>
-                  </Assign.Value>
-                </Assign>
-                <ui:PathExists DisplayName="Path Exists" Exists="[pficnt_exist]" sap:VirtualizedContainerService.HintSize="484,89" sap2010:WorkflowViewState.IdRef="PathExists_17" Path="[out_PFI_cnt]" PathType="File" />
-                <If Condition="[pficnt_exist]" sap:VirtualizedContainerService.HintSize="484,279" sap2010:WorkflowViewState.IdRef="If_17">
-                  <If.Else>
-                    <ui:CreateFile ContinueOnError="{x:Null}" DisplayName="Create File" sap:VirtualizedContainerService.HintSize="334,132" sap2010:WorkflowViewState.IdRef="CreateFile_22" Name="counter.txt" Path="[out_PFI_dir]">
-                      <sap:WorkflowViewStateService.ViewState>
-                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                          <x:Boolean x:Key="IsPinned">False</x:Boolean>
-                        </scg:Dictionary>
-                      </sap:WorkflowViewStateService.ViewState>
-                    </ui:CreateFile>
-                  </If.Else>
-                </If>
-              </Sequence>
-              <Sequence DisplayName="Upload Temp Fix Directories" sap:VirtualizedContainerService.HintSize="200,66" sap2010:WorkflowViewState.IdRef="Sequence_25">
-                <Sequence.Variables>
-                  <Variable x:TypeArguments="x:Boolean" Name="tempcnt_exist" />
-                </Sequence.Variables>
-                <sap:WorkflowViewStateService.ViewState>
-                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                    <x:Boolean x:Key="IsExpanded">False</x:Boolean>
-                    <x:Boolean x:Key="IsPinned">False</x:Boolean>
-                  </scg:Dictionary>
-                </sap:WorkflowViewStateService.ViewState>
-                <ui:ExcelReadCell Cell="C20" DisplayName="Read Temp Fix Dir" sap:VirtualizedContainerService.HintSize="484,59" sap2010:WorkflowViewState.IdRef="ExcelReadCell_14" SheetName="The Form">
-                  <ui:ExcelReadCell.Result>
-                    <OutArgument x:TypeArguments="x:String">[out_TEMP_dir]</OutArgument>
-                  </ui:ExcelReadCell.Result>
-                </ui:ExcelReadCell>
-                <Assign sap:VirtualizedContainerService.HintSize="484,60" sap2010:WorkflowViewState.IdRef="Assign_37">
-                  <Assign.To>
-                    <OutArgument x:TypeArguments="x:String">[out_TEMP_cnt]</OutArgument>
-                  </Assign.To>
-                  <Assign.Value>
-                    <InArgument x:TypeArguments="x:String">[out_TEMP_dir+"\counter.txt"]</InArgument>
-                  </Assign.Value>
-                </Assign>
-                <ui:PathExists DisplayName="Path Exists" Exists="[tempcnt_exist]" sap:VirtualizedContainerService.HintSize="484,89" sap2010:WorkflowViewState.IdRef="PathExists_18" Path="[out_TEMP_cnt]" PathType="File" />
-                <If Condition="[tempcnt_exist]" sap:VirtualizedContainerService.HintSize="484,279" sap2010:WorkflowViewState.IdRef="If_18">
-                  <sap:WorkflowViewStateService.ViewState>
-                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                      <x:Boolean x:Key="IsPinned">False</x:Boolean>
-                    </scg:Dictionary>
-                  </sap:WorkflowViewStateService.ViewState>
-                  <If.Else>
-                    <ui:CreateFile ContinueOnError="{x:Null}" DisplayName="Create File" sap:VirtualizedContainerService.HintSize="334,132" sap2010:WorkflowViewState.IdRef="CreateFile_23" Name="counter.txt" Path="[out_TEMP_dir]">
-                      <sap:WorkflowViewStateService.ViewState>
-                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                          <x:Boolean x:Key="IsPinned">False</x:Boolean>
-                        </scg:Dictionary>
-                      </sap:WorkflowViewStateService.ViewState>
-                    </ui:CreateFile>
-                  </If.Else>
-                </If>
-              </Sequence>
-            </Sequence>
-            <Sequence DisplayName="SAP Identity" sap:VirtualizedContainerService.HintSize="376,646" sap2010:WorkflowViewState.IdRef="Sequence_27">
-              <sap:WorkflowViewStateService.ViewState>
-                <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                  <x:Boolean x:Key="IsExpanded">False</x:Boolean>
-                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
-                </scg:Dictionary>
-              </sap:WorkflowViewStateService.ViewState>
-              <ui:ExcelReadCell Cell="C25" DisplayName="Read SAP Logon Path" sap:VirtualizedContainerService.HintSize="334,59" sap2010:WorkflowViewState.IdRef="ExcelReadCell_15" SheetName="The Form">
-                <ui:ExcelReadCell.Result>
-                  <OutArgument x:TypeArguments="x:String">[out_SAP_path]</OutArgument>
-                </ui:ExcelReadCell.Result>
-              </ui:ExcelReadCell>
-              <ui:ExcelReadCell Cell="C26" DisplayName="Read SAP Connection Name" sap:VirtualizedContainerService.HintSize="334,59" sap2010:WorkflowViewState.IdRef="ExcelReadCell_16" SheetName="The Form">
-                <ui:ExcelReadCell.Result>
-                  <OutArgument x:TypeArguments="x:String">[out_SAP_conname]</OutArgument>
-                </ui:ExcelReadCell.Result>
-              </ui:ExcelReadCell>
-              <ui:ExcelReadCell Cell="C27" DisplayName="Read SAP Username" sap:VirtualizedContainerService.HintSize="334,59" sap2010:WorkflowViewState.IdRef="ExcelReadCell_17" SheetName="The Form">
-                <ui:ExcelReadCell.Result>
-                  <OutArgument x:TypeArguments="x:String">[out_SAP_username]</OutArgument>
-                </ui:ExcelReadCell.Result>
-              </ui:ExcelReadCell>
-              <ui:ExcelReadCell Cell="C28" DisplayName="Read SAP Password" sap:VirtualizedContainerService.HintSize="334,59" sap2010:WorkflowViewState.IdRef="ExcelReadCell_18" SheetName="The Form">
-                <ui:ExcelReadCell.Result>
-                  <OutArgument x:TypeArguments="x:String">[out_SAP_password]</OutArgument>
-                </ui:ExcelReadCell.Result>
-              </ui:ExcelReadCell>
-              <ui:ExcelReadCell Cell="C29" DisplayName="Read SAP Client" sap:VirtualizedContainerService.HintSize="334,59" sap2010:WorkflowViewState.IdRef="ExcelReadCell_19" PreserveFormat="True" SheetName="The Form">
-                <ui:ExcelReadCell.Result>
-                  <OutArgument x:TypeArguments="x:String">[out_SAP_client]</OutArgument>
-                </ui:ExcelReadCell.Result>
+    <TryCatch DisplayName="Try Catch - Config" sap:VirtualizedContainerService.HintSize="434,297" sap2010:WorkflowViewState.IdRef="TryCatch_1">
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+      <TryCatch.Try>
+        <ui:ExcelApplicationScope Password="{x:Null}" AutoSave="False" CreateNewFile="False" DisplayName="ConfigExcel Application Scope" sap:VirtualizedContainerService.HintSize="434,596" sap2010:WorkflowViewState.IdRef="ExcelApplicationScope_1" InstanceCachePeriod="3000" WorkbookPath="D:\Nado_Test_RPA_Prod\ConfigFile\ConfigFile.xlsx">
+          <ui:ExcelApplicationScope.Body>
+            <ActivityAction x:TypeArguments="ui:WorkbookApplication">
+              <ActivityAction.Argument>
+                <DelegateInArgument x:TypeArguments="ui:WorkbookApplication" Name="ExcelWorkbookScope" />
+              </ActivityAction.Argument>
+              <Sequence DisplayName="Collect Data from Excel" sap:VirtualizedContainerService.HintSize="242,487" sap2010:WorkflowViewState.IdRef="Sequence_13">
                 <sap:WorkflowViewStateService.ViewState>
                   <scg:Dictionary x:TypeArguments="x:String, x:Object">
                     <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                     <x:Boolean x:Key="IsPinned">False</x:Boolean>
                   </scg:Dictionary>
                 </sap:WorkflowViewStateService.ViewState>
-              </ui:ExcelReadCell>
-              <ui:ExcelReadCell Cell="C30" DisplayName="Read SAP Language" sap:VirtualizedContainerService.HintSize="334,59" sap2010:WorkflowViewState.IdRef="ExcelReadCell_20" SheetName="The Form">
-                <ui:ExcelReadCell.Result>
-                  <OutArgument x:TypeArguments="x:String">[out_SAP_lang]</OutArgument>
-                </ui:ExcelReadCell.Result>
-              </ui:ExcelReadCell>
+                <Sequence DisplayName="Email Settings" sap:VirtualizedContainerService.HintSize="200,66" sap2010:WorkflowViewState.IdRef="Sequence_12">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                      <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                  <ui:ExcelReadCell Cell="C5" DisplayName="Get Outlook Account" sap:VirtualizedContainerService.HintSize="334,59" sap2010:WorkflowViewState.IdRef="ExcelReadCell_1" SheetName="The Form">
+                    <ui:ExcelReadCell.Result>
+                      <OutArgument x:TypeArguments="x:String">[out_account]</OutArgument>
+                    </ui:ExcelReadCell.Result>
+                  </ui:ExcelReadCell>
+                  <ui:ExcelReadCell Cell="C6" DisplayName="Get Outlook Folder" sap:VirtualizedContainerService.HintSize="334,59" sap2010:WorkflowViewState.IdRef="ExcelReadCell_2" SheetName="The Form">
+                    <ui:ExcelReadCell.Result>
+                      <OutArgument x:TypeArguments="x:String">[out_mail_folder]</OutArgument>
+                    </ui:ExcelReadCell.Result>
+                  </ui:ExcelReadCell>
+                  <ui:ExcelReadCell Cell="C7" DisplayName="Get Sender Address" sap:VirtualizedContainerService.HintSize="334,59" sap2010:WorkflowViewState.IdRef="ExcelReadCell_3" SheetName="The Form">
+                    <ui:ExcelReadCell.Result>
+                      <OutArgument x:TypeArguments="x:String">[out_sender_address]</OutArgument>
+                    </ui:ExcelReadCell.Result>
+                  </ui:ExcelReadCell>
+                </Sequence>
+                <Sequence sap2010:Annotation.AnnotationText="Konfigurasi terkait di direktori mana file spreadsheet hasil generate SAP akan disimpan. Counter adalah mekanisme yang dibuat developer untuk memberi penamaan dan penomoran file." DisplayName="Save File Settings" sap:VirtualizedContainerService.HintSize="200,183" sap2010:WorkflowViewState.IdRef="Sequence_26">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                      <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                      <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                  <Sequence DisplayName="Upload FOMD Dir" sap:VirtualizedContainerService.HintSize="200,66" sap2010:WorkflowViewState.IdRef="Sequence_14">
+                    <Sequence.Variables>
+                      <Variable x:TypeArguments="x:Boolean" Name="fomdcnt_exist" />
+                    </Sequence.Variables>
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                    <ui:ExcelReadCell Cell="C13" DisplayName="Get FOMD Dir" sap:VirtualizedContainerService.HintSize="484,59" sap2010:WorkflowViewState.IdRef="ExcelReadCell_4" SheetName="The Form">
+                      <ui:ExcelReadCell.Result>
+                        <OutArgument x:TypeArguments="x:String">[out_FOMD_dir]</OutArgument>
+                      </ui:ExcelReadCell.Result>
+                    </ui:ExcelReadCell>
+                    <Assign sap:VirtualizedContainerService.HintSize="484,60" sap2010:WorkflowViewState.IdRef="Assign_25">
+                      <Assign.To>
+                        <OutArgument x:TypeArguments="x:String">[out_FOMD_cnt]</OutArgument>
+                      </Assign.To>
+                      <Assign.Value>
+                        <InArgument x:TypeArguments="x:String">[out_FOMD_dir+"\counter.txt"]</InArgument>
+                      </Assign.Value>
+                    </Assign>
+                    <ui:PathExists DisplayName="Path Exists" Exists="[fomdcnt_exist]" sap:VirtualizedContainerService.HintSize="484,89" sap2010:WorkflowViewState.IdRef="PathExists_7" Path="[out_FOMD_cnt]" PathType="File" />
+                    <If Condition="[fomdcnt_exist]" sap:VirtualizedContainerService.HintSize="484,279" sap2010:WorkflowViewState.IdRef="If_7">
+                      <If.Else>
+                        <ui:CreateFile ContinueOnError="{x:Null}" DisplayName="Create File" sap:VirtualizedContainerService.HintSize="334,132" sap2010:WorkflowViewState.IdRef="CreateFile_12" Name="counter.txt" Path="[out_FOMD_dir]">
+                          <sap:WorkflowViewStateService.ViewState>
+                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                              <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                            </scg:Dictionary>
+                          </sap:WorkflowViewStateService.ViewState>
+                        </ui:CreateFile>
+                      </If.Else>
+                    </If>
+                  </Sequence>
+                  <Sequence DisplayName="Upload FODK Dir" sap:VirtualizedContainerService.HintSize="200,66" sap2010:WorkflowViewState.IdRef="Sequence_15">
+                    <Sequence.Variables>
+                      <Variable x:TypeArguments="x:Boolean" Name="fodkcnt_exist" />
+                    </Sequence.Variables>
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                    <ui:ExcelReadCell Cell="C14" DisplayName="Get FODK Dir" sap:VirtualizedContainerService.HintSize="484,59" sap2010:WorkflowViewState.IdRef="ExcelReadCell_5" SheetName="The Form">
+                      <ui:ExcelReadCell.Result>
+                        <OutArgument x:TypeArguments="x:String">[out_FODK_dir]</OutArgument>
+                      </ui:ExcelReadCell.Result>
+                    </ui:ExcelReadCell>
+                    <Assign sap:VirtualizedContainerService.HintSize="484,60" sap2010:WorkflowViewState.IdRef="Assign_26">
+                      <Assign.To>
+                        <OutArgument x:TypeArguments="x:String">[out_FODK_cnt]</OutArgument>
+                      </Assign.To>
+                      <Assign.Value>
+                        <InArgument x:TypeArguments="x:String">[out_FODK_dir+"\counter.txt"]</InArgument>
+                      </Assign.Value>
+                    </Assign>
+                    <ui:PathExists DisplayName="Path Exists" Exists="[fodkcnt_exist]" sap:VirtualizedContainerService.HintSize="484,89" sap2010:WorkflowViewState.IdRef="PathExists_8" Path="[out_FODK_cnt]" PathType="File" />
+                    <If Condition="[fodkcnt_exist]" sap:VirtualizedContainerService.HintSize="484,279" sap2010:WorkflowViewState.IdRef="If_8">
+                      <If.Else>
+                        <ui:CreateFile ContinueOnError="{x:Null}" DisplayName="Create File" sap:VirtualizedContainerService.HintSize="334,132" sap2010:WorkflowViewState.IdRef="CreateFile_13" Name="counter.txt" Path="[out_FODK_dir]">
+                          <sap:WorkflowViewStateService.ViewState>
+                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                              <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                            </scg:Dictionary>
+                          </sap:WorkflowViewStateService.ViewState>
+                        </ui:CreateFile>
+                      </If.Else>
+                    </If>
+                  </Sequence>
+                  <Sequence DisplayName="Upload Add FOMD Dir" sap:VirtualizedContainerService.HintSize="200,66" sap2010:WorkflowViewState.IdRef="Sequence_16">
+                    <Sequence.Variables>
+                      <Variable x:TypeArguments="x:Boolean" Name="afomdcnt_exist" />
+                    </Sequence.Variables>
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                    <ui:ExcelReadCell Cell="C15" DisplayName="Get Add FOMD Dir" sap:VirtualizedContainerService.HintSize="484,59" sap2010:WorkflowViewState.IdRef="ExcelReadCell_6" SheetName="The Form">
+                      <ui:ExcelReadCell.Result>
+                        <OutArgument x:TypeArguments="x:String">[out_AFOMD_dir]</OutArgument>
+                      </ui:ExcelReadCell.Result>
+                    </ui:ExcelReadCell>
+                    <Assign sap:VirtualizedContainerService.HintSize="484,60" sap2010:WorkflowViewState.IdRef="Assign_27">
+                      <Assign.To>
+                        <OutArgument x:TypeArguments="x:String">[out_AFOMD_cnt]</OutArgument>
+                      </Assign.To>
+                      <Assign.Value>
+                        <InArgument x:TypeArguments="x:String">[out_AFOMD_dir+"\counter.txt"]</InArgument>
+                      </Assign.Value>
+                    </Assign>
+                    <ui:PathExists DisplayName="Path Exists" Exists="[afomdcnt_exist]" sap:VirtualizedContainerService.HintSize="484,89" sap2010:WorkflowViewState.IdRef="PathExists_9" Path="[out_AFOMD_cnt]" PathType="File" />
+                    <If Condition="[afomdcnt_exist]" sap:VirtualizedContainerService.HintSize="484,279" sap2010:WorkflowViewState.IdRef="If_9">
+                      <If.Else>
+                        <ui:CreateFile ContinueOnError="{x:Null}" DisplayName="Create File" sap:VirtualizedContainerService.HintSize="334,132" sap2010:WorkflowViewState.IdRef="CreateFile_14" Name="counter.txt" Path="[out_AFOMD_dir]">
+                          <sap:WorkflowViewStateService.ViewState>
+                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                              <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                            </scg:Dictionary>
+                          </sap:WorkflowViewStateService.ViewState>
+                        </ui:CreateFile>
+                      </If.Else>
+                    </If>
+                  </Sequence>
+                  <Sequence DisplayName="Upload Add FODK Dir" sap:VirtualizedContainerService.HintSize="200,66" sap2010:WorkflowViewState.IdRef="Sequence_17">
+                    <Sequence.Variables>
+                      <Variable x:TypeArguments="x:Boolean" Name="afodkcnt_exist" />
+                    </Sequence.Variables>
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                    <ui:ExcelReadCell Cell="C16" DisplayName="Get Add FODK Dir" sap:VirtualizedContainerService.HintSize="484,59" sap2010:WorkflowViewState.IdRef="ExcelReadCell_7" SheetName="The Form">
+                      <ui:ExcelReadCell.Result>
+                        <OutArgument x:TypeArguments="x:String">[out_AFODK_dir]</OutArgument>
+                      </ui:ExcelReadCell.Result>
+                    </ui:ExcelReadCell>
+                    <Assign sap:VirtualizedContainerService.HintSize="484,60" sap2010:WorkflowViewState.IdRef="Assign_28">
+                      <Assign.To>
+                        <OutArgument x:TypeArguments="x:String">[out_AFODK_cnt]</OutArgument>
+                      </Assign.To>
+                      <Assign.Value>
+                        <InArgument x:TypeArguments="x:String">[out_AFODK_dir+"\counter.txt"]</InArgument>
+                      </Assign.Value>
+                    </Assign>
+                    <ui:PathExists DisplayName="Path Exists" Exists="[afodkcnt_exist]" sap:VirtualizedContainerService.HintSize="484,89" sap2010:WorkflowViewState.IdRef="PathExists_10" Path="[out_AFODK_cnt]" PathType="File" />
+                    <If Condition="[afodkcnt_exist]" sap:VirtualizedContainerService.HintSize="484,279" sap2010:WorkflowViewState.IdRef="If_10">
+                      <If.Else>
+                        <ui:CreateFile ContinueOnError="{x:Null}" DisplayName="Create File" sap:VirtualizedContainerService.HintSize="334,132" sap2010:WorkflowViewState.IdRef="CreateFile_15" Name="counter.txt" Path="[out_AFODK_dir]">
+                          <sap:WorkflowViewStateService.ViewState>
+                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                              <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                            </scg:Dictionary>
+                          </sap:WorkflowViewStateService.ViewState>
+                        </ui:CreateFile>
+                      </If.Else>
+                    </If>
+                  </Sequence>
+                  <Sequence DisplayName="Upload ROMD Dir" sap:VirtualizedContainerService.HintSize="200,66" sap2010:WorkflowViewState.IdRef="Sequence_18">
+                    <Sequence.Variables>
+                      <Variable x:TypeArguments="x:Boolean" Name="romdcnt_exist" />
+                    </Sequence.Variables>
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                    <ui:ExcelReadCell Cell="C17" DisplayName="Get ROMD Dir" sap:VirtualizedContainerService.HintSize="484,59" sap2010:WorkflowViewState.IdRef="ExcelReadCell_8" SheetName="The Form">
+                      <ui:ExcelReadCell.Result>
+                        <OutArgument x:TypeArguments="x:String">[out_ROMD_dir]</OutArgument>
+                      </ui:ExcelReadCell.Result>
+                    </ui:ExcelReadCell>
+                    <Assign sap:VirtualizedContainerService.HintSize="484,60" sap2010:WorkflowViewState.IdRef="Assign_29">
+                      <Assign.To>
+                        <OutArgument x:TypeArguments="x:String">[out_ROMD_cnt]</OutArgument>
+                      </Assign.To>
+                      <Assign.Value>
+                        <InArgument x:TypeArguments="x:String">[out_ROMD_dir+"\counter.txt"]</InArgument>
+                      </Assign.Value>
+                    </Assign>
+                    <ui:PathExists DisplayName="Path Exists" Exists="[romdcnt_exist]" sap:VirtualizedContainerService.HintSize="484,89" sap2010:WorkflowViewState.IdRef="PathExists_11" Path="[out_ROMD_cnt]" PathType="File" />
+                    <If Condition="[romdcnt_exist]" sap:VirtualizedContainerService.HintSize="484,279" sap2010:WorkflowViewState.IdRef="If_11">
+                      <If.Else>
+                        <ui:CreateFile ContinueOnError="{x:Null}" DisplayName="Create File" sap:VirtualizedContainerService.HintSize="334,132" sap2010:WorkflowViewState.IdRef="CreateFile_16" Name="counter.txt" Path="[out_ROMD_dir]">
+                          <sap:WorkflowViewStateService.ViewState>
+                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                              <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                            </scg:Dictionary>
+                          </sap:WorkflowViewStateService.ViewState>
+                        </ui:CreateFile>
+                      </If.Else>
+                    </If>
+                  </Sequence>
+                  <Sequence DisplayName="Upload RODK Dir" sap:VirtualizedContainerService.HintSize="200,66" sap2010:WorkflowViewState.IdRef="Sequence_19">
+                    <Sequence.Variables>
+                      <Variable x:TypeArguments="x:Boolean" Name="rodkcnt_exist" />
+                    </Sequence.Variables>
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                    <ui:ExcelReadCell Cell="C18" DisplayName="Get RODK Dir" sap:VirtualizedContainerService.HintSize="484,59" sap2010:WorkflowViewState.IdRef="ExcelReadCell_9" SheetName="The Form">
+                      <ui:ExcelReadCell.Result>
+                        <OutArgument x:TypeArguments="x:String">[out_RODK_dir]</OutArgument>
+                      </ui:ExcelReadCell.Result>
+                    </ui:ExcelReadCell>
+                    <Assign sap:VirtualizedContainerService.HintSize="484,60" sap2010:WorkflowViewState.IdRef="Assign_30">
+                      <Assign.To>
+                        <OutArgument x:TypeArguments="x:String">[out_RODK_cnt]</OutArgument>
+                      </Assign.To>
+                      <Assign.Value>
+                        <InArgument x:TypeArguments="x:String">[out_RODK_dir+"\counter.txt"]</InArgument>
+                      </Assign.Value>
+                    </Assign>
+                    <ui:PathExists DisplayName="Path Exists" Exists="[rodkcnt_exist]" sap:VirtualizedContainerService.HintSize="484,89" sap2010:WorkflowViewState.IdRef="PathExists_12" Path="[out_RODK_cnt]" PathType="File" />
+                    <If Condition="[rodkcnt_exist]" sap:VirtualizedContainerService.HintSize="484,279" sap2010:WorkflowViewState.IdRef="If_12">
+                      <If.Else>
+                        <ui:CreateFile ContinueOnError="{x:Null}" DisplayName="Create File" sap:VirtualizedContainerService.HintSize="334,132" sap2010:WorkflowViewState.IdRef="CreateFile_17" Name="counter.txt" Path="[out_RODK_dir]">
+                          <sap:WorkflowViewStateService.ViewState>
+                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                              <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                            </scg:Dictionary>
+                          </sap:WorkflowViewStateService.ViewState>
+                        </ui:CreateFile>
+                      </If.Else>
+                    </If>
+                  </Sequence>
+                  <Sequence DisplayName="Upload B2B Dir" sap:VirtualizedContainerService.HintSize="200,66" sap2010:WorkflowViewState.IdRef="Sequence_20">
+                    <Sequence.Variables>
+                      <Variable x:TypeArguments="x:Boolean" Name="b2bcnt_exist" />
+                    </Sequence.Variables>
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                    <ui:ExcelReadCell Cell="C11" DisplayName="Read B2B Dir" sap:VirtualizedContainerService.HintSize="484,51" sap2010:WorkflowViewState.IdRef="ExcelReadCell_10" SheetName="The Form">
+                      <ui:ExcelReadCell.Result>
+                        <OutArgument x:TypeArguments="x:String">[out_B2B_dir]</OutArgument>
+                      </ui:ExcelReadCell.Result>
+                      <sap:WorkflowViewStateService.ViewState>
+                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                        </scg:Dictionary>
+                      </sap:WorkflowViewStateService.ViewState>
+                    </ui:ExcelReadCell>
+                    <Assign sap:VirtualizedContainerService.HintSize="484,60" sap2010:WorkflowViewState.IdRef="Assign_31">
+                      <Assign.To>
+                        <OutArgument x:TypeArguments="x:String">[out_B2B_cnt]</OutArgument>
+                      </Assign.To>
+                      <Assign.Value>
+                        <InArgument x:TypeArguments="x:String">[out_B2B_dir+"\counter.txt"]</InArgument>
+                      </Assign.Value>
+                    </Assign>
+                    <ui:PathExists DisplayName="Path Exists" Exists="[b2bcnt_exist]" sap:VirtualizedContainerService.HintSize="484,89" sap2010:WorkflowViewState.IdRef="PathExists_13" Path="[out_B2B_cnt]" PathType="File" />
+                    <If Condition="[b2bcnt_exist]" sap:VirtualizedContainerService.HintSize="484,279" sap2010:WorkflowViewState.IdRef="If_13">
+                      <If.Else>
+                        <ui:CreateFile ContinueOnError="{x:Null}" DisplayName="Create File" sap:VirtualizedContainerService.HintSize="334,132" sap2010:WorkflowViewState.IdRef="CreateFile_18" Name="counter.txt" Path="[out_B2B_dir]">
+                          <sap:WorkflowViewStateService.ViewState>
+                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                              <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                            </scg:Dictionary>
+                          </sap:WorkflowViewStateService.ViewState>
+                        </ui:CreateFile>
+                      </If.Else>
+                    </If>
+                  </Sequence>
+                  <Sequence DisplayName="Upload Product_MD Directories" sap:VirtualizedContainerService.HintSize="200,66" sap2010:WorkflowViewState.IdRef="Sequence_22">
+                    <Sequence.Variables>
+                      <Variable x:TypeArguments="x:Boolean" Name="prodcnt_exist" />
+                    </Sequence.Variables>
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                    <ui:ExcelReadCell Cell="C19" DisplayName="Read Product MD Dir" sap:VirtualizedContainerService.HintSize="334,59" sap2010:WorkflowViewState.IdRef="ExcelReadCell_11" SheetName="The Form">
+                      <ui:ExcelReadCell.Result>
+                        <OutArgument x:TypeArguments="x:String">[out_PROD_dir]</OutArgument>
+                      </ui:ExcelReadCell.Result>
+                    </ui:ExcelReadCell>
+                    <Assign sap:VirtualizedContainerService.HintSize="334,60" sap2010:WorkflowViewState.IdRef="Assign_34">
+                      <Assign.To>
+                        <OutArgument x:TypeArguments="x:String">[out_PROD_cnt]</OutArgument>
+                      </Assign.To>
+                      <Assign.Value>
+                        <InArgument x:TypeArguments="x:String">[out_PROD_dir+"\counter.txt"]</InArgument>
+                      </Assign.Value>
+                    </Assign>
+                    <ui:PathExists DisplayName="Path Exists" Exists="[prodcnt_exist]" sap:VirtualizedContainerService.HintSize="334,51" sap2010:WorkflowViewState.IdRef="PathExists_15" Path="[out_PROD_cnt]" PathType="File">
+                      <sap:WorkflowViewStateService.ViewState>
+                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                        </scg:Dictionary>
+                      </sap:WorkflowViewStateService.ViewState>
+                    </ui:PathExists>
+                    <If Condition="[prodcnt_exist]" sap:VirtualizedContainerService.HintSize="334,51" sap2010:WorkflowViewState.IdRef="If_15">
+                      <sap:WorkflowViewStateService.ViewState>
+                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                        </scg:Dictionary>
+                      </sap:WorkflowViewStateService.ViewState>
+                      <If.Else>
+                        <ui:CreateFile ContinueOnError="{x:Null}" DisplayName="Create File" sap:VirtualizedContainerService.HintSize="334,132" sap2010:WorkflowViewState.IdRef="CreateFile_20" Name="counter.txt" Path="[out_PROD_dir]">
+                          <sap:WorkflowViewStateService.ViewState>
+                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                              <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                            </scg:Dictionary>
+                          </sap:WorkflowViewStateService.ViewState>
+                        </ui:CreateFile>
+                      </If.Else>
+                    </If>
+                  </Sequence>
+                  <Sequence DisplayName="Upload ECM Directories" sap:VirtualizedContainerService.HintSize="200,66" sap2010:WorkflowViewState.IdRef="Sequence_23">
+                    <Sequence.Variables>
+                      <Variable x:TypeArguments="x:Boolean" Name="ecmcnt_exist" />
+                    </Sequence.Variables>
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                    <ui:ExcelReadCell Cell="C21" DisplayName="Read ECM Dir" sap:VirtualizedContainerService.HintSize="484,59" sap2010:WorkflowViewState.IdRef="ExcelReadCell_12" SheetName="The Form">
+                      <ui:ExcelReadCell.Result>
+                        <OutArgument x:TypeArguments="x:String">[out_ECM_dir]</OutArgument>
+                      </ui:ExcelReadCell.Result>
+                    </ui:ExcelReadCell>
+                    <Assign sap:VirtualizedContainerService.HintSize="484,60" sap2010:WorkflowViewState.IdRef="Assign_35">
+                      <Assign.To>
+                        <OutArgument x:TypeArguments="x:String">[out_ECM_cnt]</OutArgument>
+                      </Assign.To>
+                      <Assign.Value>
+                        <InArgument x:TypeArguments="x:String">[out_ECM_dir+"\counter.txt"]</InArgument>
+                      </Assign.Value>
+                    </Assign>
+                    <ui:PathExists DisplayName="Path Exists" Exists="[ecmcnt_exist]" sap:VirtualizedContainerService.HintSize="484,89" sap2010:WorkflowViewState.IdRef="PathExists_16" Path="[out_ECM_cnt]" PathType="File" />
+                    <If Condition="[ecmcnt_exist]" sap:VirtualizedContainerService.HintSize="484,279" sap2010:WorkflowViewState.IdRef="If_16">
+                      <If.Else>
+                        <ui:CreateFile ContinueOnError="{x:Null}" DisplayName="Create File" sap:VirtualizedContainerService.HintSize="334,132" sap2010:WorkflowViewState.IdRef="CreateFile_21" Name="counter.txt" Path="[out_ECM_dir]">
+                          <sap:WorkflowViewStateService.ViewState>
+                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                              <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                            </scg:Dictionary>
+                          </sap:WorkflowViewStateService.ViewState>
+                        </ui:CreateFile>
+                      </If.Else>
+                    </If>
+                  </Sequence>
+                  <Sequence DisplayName="Upload PFI Directories" sap:VirtualizedContainerService.HintSize="200,66" sap2010:WorkflowViewState.IdRef="Sequence_24">
+                    <Sequence.Variables>
+                      <Variable x:TypeArguments="x:Boolean" Name="pficnt_exist" />
+                    </Sequence.Variables>
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                    <ui:ExcelReadCell Cell="C12" DisplayName="Read PFI Dir" sap:VirtualizedContainerService.HintSize="484,59" sap2010:WorkflowViewState.IdRef="ExcelReadCell_13" SheetName="The Form">
+                      <ui:ExcelReadCell.Result>
+                        <OutArgument x:TypeArguments="x:String">[out_PFI_dir]</OutArgument>
+                      </ui:ExcelReadCell.Result>
+                    </ui:ExcelReadCell>
+                    <Assign sap:VirtualizedContainerService.HintSize="484,60" sap2010:WorkflowViewState.IdRef="Assign_36">
+                      <Assign.To>
+                        <OutArgument x:TypeArguments="x:String">[out_PFI_cnt]</OutArgument>
+                      </Assign.To>
+                      <Assign.Value>
+                        <InArgument x:TypeArguments="x:String">[out_PFI_dir+"\counter.txt"]</InArgument>
+                      </Assign.Value>
+                    </Assign>
+                    <ui:PathExists DisplayName="Path Exists" Exists="[pficnt_exist]" sap:VirtualizedContainerService.HintSize="484,89" sap2010:WorkflowViewState.IdRef="PathExists_17" Path="[out_PFI_cnt]" PathType="File" />
+                    <If Condition="[pficnt_exist]" sap:VirtualizedContainerService.HintSize="484,279" sap2010:WorkflowViewState.IdRef="If_17">
+                      <If.Else>
+                        <ui:CreateFile ContinueOnError="{x:Null}" DisplayName="Create File" sap:VirtualizedContainerService.HintSize="334,132" sap2010:WorkflowViewState.IdRef="CreateFile_22" Name="counter.txt" Path="[out_PFI_dir]">
+                          <sap:WorkflowViewStateService.ViewState>
+                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                              <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                            </scg:Dictionary>
+                          </sap:WorkflowViewStateService.ViewState>
+                        </ui:CreateFile>
+                      </If.Else>
+                    </If>
+                  </Sequence>
+                  <Sequence DisplayName="Upload Temp Fix Directories" sap:VirtualizedContainerService.HintSize="200,66" sap2010:WorkflowViewState.IdRef="Sequence_25">
+                    <Sequence.Variables>
+                      <Variable x:TypeArguments="x:Boolean" Name="tempcnt_exist" />
+                    </Sequence.Variables>
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                    <ui:ExcelReadCell Cell="C20" DisplayName="Read Temp Fix Dir" sap:VirtualizedContainerService.HintSize="484,59" sap2010:WorkflowViewState.IdRef="ExcelReadCell_14" SheetName="The Form">
+                      <ui:ExcelReadCell.Result>
+                        <OutArgument x:TypeArguments="x:String">[out_TEMP_dir]</OutArgument>
+                      </ui:ExcelReadCell.Result>
+                    </ui:ExcelReadCell>
+                    <Assign sap:VirtualizedContainerService.HintSize="484,60" sap2010:WorkflowViewState.IdRef="Assign_37">
+                      <Assign.To>
+                        <OutArgument x:TypeArguments="x:String">[out_TEMP_cnt]</OutArgument>
+                      </Assign.To>
+                      <Assign.Value>
+                        <InArgument x:TypeArguments="x:String">[out_TEMP_dir+"\counter.txt"]</InArgument>
+                      </Assign.Value>
+                    </Assign>
+                    <ui:PathExists DisplayName="Path Exists" Exists="[tempcnt_exist]" sap:VirtualizedContainerService.HintSize="484,89" sap2010:WorkflowViewState.IdRef="PathExists_18" Path="[out_TEMP_cnt]" PathType="File" />
+                    <If Condition="[tempcnt_exist]" sap:VirtualizedContainerService.HintSize="484,279" sap2010:WorkflowViewState.IdRef="If_18">
+                      <sap:WorkflowViewStateService.ViewState>
+                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                        </scg:Dictionary>
+                      </sap:WorkflowViewStateService.ViewState>
+                      <If.Else>
+                        <ui:CreateFile ContinueOnError="{x:Null}" DisplayName="Create File" sap:VirtualizedContainerService.HintSize="334,132" sap2010:WorkflowViewState.IdRef="CreateFile_23" Name="counter.txt" Path="[out_TEMP_dir]">
+                          <sap:WorkflowViewStateService.ViewState>
+                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                              <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                            </scg:Dictionary>
+                          </sap:WorkflowViewStateService.ViewState>
+                        </ui:CreateFile>
+                      </If.Else>
+                    </If>
+                  </Sequence>
+                </Sequence>
+                <Sequence DisplayName="SAP Identity" sap:VirtualizedContainerService.HintSize="200,66" sap2010:WorkflowViewState.IdRef="Sequence_27">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                      <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                  <ui:ExcelReadCell Cell="C25" DisplayName="Read SAP Logon Path" sap:VirtualizedContainerService.HintSize="334,59" sap2010:WorkflowViewState.IdRef="ExcelReadCell_15" SheetName="The Form">
+                    <ui:ExcelReadCell.Result>
+                      <OutArgument x:TypeArguments="x:String">[out_SAP_path]</OutArgument>
+                    </ui:ExcelReadCell.Result>
+                  </ui:ExcelReadCell>
+                  <ui:ExcelReadCell Cell="C26" DisplayName="Read SAP Connection Name" sap:VirtualizedContainerService.HintSize="334,59" sap2010:WorkflowViewState.IdRef="ExcelReadCell_16" SheetName="The Form">
+                    <ui:ExcelReadCell.Result>
+                      <OutArgument x:TypeArguments="x:String">[out_SAP_conname]</OutArgument>
+                    </ui:ExcelReadCell.Result>
+                  </ui:ExcelReadCell>
+                  <ui:ExcelReadCell Cell="C27" DisplayName="Read SAP Username" sap:VirtualizedContainerService.HintSize="334,59" sap2010:WorkflowViewState.IdRef="ExcelReadCell_17" SheetName="The Form">
+                    <ui:ExcelReadCell.Result>
+                      <OutArgument x:TypeArguments="x:String">[out_SAP_username]</OutArgument>
+                    </ui:ExcelReadCell.Result>
+                  </ui:ExcelReadCell>
+                  <ui:ExcelReadCell Cell="C28" DisplayName="Read SAP Password" sap:VirtualizedContainerService.HintSize="334,59" sap2010:WorkflowViewState.IdRef="ExcelReadCell_18" SheetName="The Form">
+                    <ui:ExcelReadCell.Result>
+                      <OutArgument x:TypeArguments="x:String">[out_SAP_password]</OutArgument>
+                    </ui:ExcelReadCell.Result>
+                  </ui:ExcelReadCell>
+                  <ui:ExcelReadCell Cell="C29" DisplayName="Read SAP Client" sap:VirtualizedContainerService.HintSize="334,59" sap2010:WorkflowViewState.IdRef="ExcelReadCell_19" PreserveFormat="True" SheetName="The Form">
+                    <ui:ExcelReadCell.Result>
+                      <OutArgument x:TypeArguments="x:String">[out_SAP_client]</OutArgument>
+                    </ui:ExcelReadCell.Result>
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                  </ui:ExcelReadCell>
+                  <ui:ExcelReadCell Cell="C30" DisplayName="Read SAP Language" sap:VirtualizedContainerService.HintSize="334,59" sap2010:WorkflowViewState.IdRef="ExcelReadCell_20" SheetName="The Form">
+                    <ui:ExcelReadCell.Result>
+                      <OutArgument x:TypeArguments="x:String">[out_SAP_lang]</OutArgument>
+                    </ui:ExcelReadCell.Result>
+                  </ui:ExcelReadCell>
+                </Sequence>
+              </Sequence>
+            </ActivityAction>
+          </ui:ExcelApplicationScope.Body>
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+              <x:Boolean x:Key="IsPinned">False</x:Boolean>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+        </ui:ExcelApplicationScope>
+      </TryCatch.Try>
+      <TryCatch.Catches>
+        <Catch x:TypeArguments="s:Exception" sap:VirtualizedContainerService.HintSize="400,135" sap2010:WorkflowViewState.IdRef="Catch`1_1">
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+              <x:Boolean x:Key="IsPinned">False</x:Boolean>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+          <ActivityAction x:TypeArguments="s:Exception">
+            <ActivityAction.Argument>
+              <DelegateInArgument x:TypeArguments="s:Exception" Name="exception" />
+            </ActivityAction.Argument>
+            <Sequence DisplayName="Error Log - Config" sap:VirtualizedContainerService.HintSize="376,368" sap2010:WorkflowViewState.IdRef="Sequence_28">
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+              <ui:LogMessage DisplayName="Log Message - Error Config" sap:VirtualizedContainerService.HintSize="334,91" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="Fatal" Message="[exception.Message+ &quot; at &quot; + exception.Source]" />
+              <ui:SendOutlookMail Account="{x:Null}" Bcc="{x:Null}" Cc="{x:Null}" MailMessage="{x:Null}" TimeoutMS="{x:Null}" Body="Dear SSC IT&#xA;&#xA;Saat ini sedang terjadi error pada robot dikarenakan masalah pada file Excel yang digunakan untuk konfigurasi. Mohon cek kesediaan file Excel tersebut, cek log, atau hubungi developer terkait. Error ini bersifat Fatal dan harus diperbaiki dengan segera.&#xA;&#xA;Regards,&#xA;Nado - RPA Developer&#xA;+6281369995333&#xA;" DisplayName="Send Outlook Mail Message" sap:VirtualizedContainerService.HintSize="334,145" sap2010:WorkflowViewState.IdRef="SendOutlookMail_1" IsBodyHtml="False" IsDraft="False" SentOnBehalfOfName="Sang Robot" Subject="Robot Error - Excel Config File" To="ssc.it@component.astra.co.id">
+                <ui:SendOutlookMail.Files>
+                  <scg:List x:TypeArguments="InArgument(x:String)" Capacity="0" />
+                </ui:SendOutlookMail.Files>
+              </ui:SendOutlookMail>
             </Sequence>
-          </Sequence>
-        </ActivityAction>
-      </ui:ExcelApplicationScope.Body>
-    </ui:ExcelApplicationScope>
+          </ActivityAction>
+        </Catch>
+      </TryCatch.Catches>
+    </TryCatch>
   </Sequence>
 </Activity>
